@@ -31,13 +31,12 @@
     <meta name="keywords" content="keyword1, keyword2, keyword3">
     -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit Converter</title>
+    <title>Area Converter</title>
     <link rel="assets/css/style.css href="style.css">
-    <script src="assets/js/Convert-Length.js" defer></script>
     <script src="assets/js/Convert-Area.js" defer></script>
 </head>
 <body>
-  <h1>Length Converter</h1>
+  <h1>Area Converter</h1>
   <form id="converter-form" onsubmit="return false;">
   <label for="input-value">Value:</label>
   <input type="number" id="input-value" required step="any">
@@ -51,13 +50,12 @@
   <div id="output" style="margin-top:1em;font-weight:bold;"></div>
   <script>
 
-    // Use LENGTH_UNITS with optgroups
-    const rawUnits = window.LENGTH_UNITS || [
-      '[Metric]', 'Nanometres (nm)', 'Micrometres (μm)', 'Millimetres (mm)', 'Centimetres (cm)', 'Metres (m)', 'Kilometres (km)',
-      '[Imperial]', 'Thou (th)', 'Inches (in)', 'Feet (ft)', 'Yards (yd)', 'Chains (ch)', 'Furlongs (fur)', 'Miles (mi)', 'League (lea)',
-      '[Maritime]', 'Fathoms (ftm)', 'Cables', 'Nautical miles',
-      '[Astronomical]', 'Parsecs (pc)', 'Astronmical units (au)', 'Light years (ly)',
-      '[Comparisons]', 'Bus (8.4m)', 'Football pitch (100.6m)', 'Earth to Moon'
+    // Use AREA_UNITS with optgroups
+    const rawUnits = window.AREA_UNITS = [
+      "[Metric]", "Square metre (sq m)", "Square kilometre (sq km)", "Centiare (ca)", "Deciare (da)", "Are (a)", "Decare (daa)", "Hectare (ha)", 
+      "[Imperial]", "Square inch (sq in)", "Square foot (sq ft)", "Square yard (sq yd)", "Square mile (sq mi)", "Perch (sq per)", "Rood (ro)", "International acre (ac)", 
+      "[US customary units]", "US survey acre (ac)", "US survey square mile (sq mi)", "US survey township", "[/US customary units]",
+      "[Nuclear physics]", "Yoctobarn (yb)", "Zeptobarn (zb)", "Attobarn (ab)", "Femtobarn (fb)", "Picobarn (pb)", "Nanobarn (nb)", "Microbarn (μb)", "Millibarn (mb)", "Barn (b)", "Kilobarn (kb)", "Megabarn (Mb)", "Outhouse", "Shed", "Planck area",
     ];
 
     function fillSelectWithGroups(id) {
@@ -88,8 +86,8 @@
       const value = parseFloat(document.getElementById('input-value').value);
       const fromUnit = document.getElementById('input-unit').value;
       const toUnit = document.getElementById('output-unit').value;
-      if (!isNaN(value) && typeof convertLength === 'function') {
-        const result = convertLength(value, fromUnit, toUnit);
+      if (!isNaN(value) && typeof convertArea === 'function') {
+        const result = convertArea(value, fromUnit, toUnit);
         document.getElementById('output').textContent = (result !== null) ? `${value} ${fromUnit} = ${result} ${toUnit}` : 'Invalid unit selection.';
       } else {
         document.getElementById('output').textContent = '';
@@ -101,7 +99,5 @@
     // Optionally, trigger conversion on page load if desired
     doConversion();
   </script>
-  <a href="length-converter.html">Length Converter</a>
-  <a href="area-converter.html">Area Converter</a>
 </body>
 </html>
