@@ -31,13 +31,12 @@
     <meta name="keywords" content="keyword1, keyword2, keyword3">
     -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit Converter</title>
+    <title>Weight Converter</title>
     <link rel="assets/css/style.css href="style.css">
-    <script src="assets/js/Convert-Length.js" defer></script>
-    <script src="assets/js/Convert-Area.js" defer></script>
+    <script src="assets/js/Convert-Weight.js" defer></script>
 </head>
 <body>
-  <h1>Length Converter</h1>
+  <h1>Weight Converter</h1>
   <form id="converter-form" onsubmit="return false;">
   <label for="input-value">Value:</label>
   <input type="number" id="input-value" required step="any">
@@ -51,13 +50,14 @@
   <div id="output" style="margin-top:1em;font-weight:bold;"></div>
   <script>
 
-    // Use LENGTH_UNITS with optgroups
-    const rawUnits = window.LENGTH_UNITS || [
-      '[Metric]', 'Nanometres (nm)', 'Micrometres (μm)', 'Millimetres (mm)', 'Centimetres (cm)', 'Metres (m)', 'Kilometres (km)',
-      '[Imperial]', 'Thou (th)', 'Inches (in)', 'Feet (ft)', 'Yards (yd)', 'Chains (ch)', 'Furlongs (fur)', 'Miles (mi)', 'League (lea)',
-      '[Maritime]', 'Fathoms (ftm)', 'Cables', 'Nautical miles',
-      '[Astronomical]', 'Parsecs (pc)', 'Astronmical units (au)', 'Light years (ly)',
-      '[Comparisons]', 'Bus (8.4m)', 'Football pitch (100.6m)', 'Earth to Moon'
+    // Use WEIGHT_UNITS with optgroups
+    const rawUnits = window.WEIGHT_UNITS || [
+        "[Metric]", "Yoctogram (yg)", "Zeptogram (zg)", "Attogram (ag)", "Femtogram (fg)", "Picogram (pg)", "Nanogram (ng)", "Microgram (μg)", "Milligram (mg)", "Centigram (cg)", "Decigram (dg)", "Gram (g)", "Decagram (dag)", "Hectogram (hg)", "Kilogram (kg)", "Megagram (Mg)", "Tonne (t)", "Gigagram (Gg)", "Teragram (Tg)", "Petagram (Pg)", "Exagram (Eg)", "Zettagram (Zg)", "Yottagram (Yg)", "[/Metric]",
+        "[Imperial Avoirdupois]", "Grain (gr)", "Dram (dr)", "Ounce (oz)", "Pound (lb)", "Nail", "Stone (st)", "Quarter (gr)", "Tod", "US hundredweight (cwt)", "Imperial hundredweight (cwt)", "US ton (t)", "Imperial ton (t)", "[/Imperial Avoirdupois]",
+        "[Imperial Troy]", "Grain (gr)", "Pennyweight (dwt)", "Troy dram (dr t)", "Troy ounce (oz t)", "Troy pound (lb t)", "Mark", "[/Imperial Troy]",
+        "[Archaic]", "Wey", "Wool wey", "Suffolk wey", "Wool sack", "Coal sack", "Load", "Last", "Flax or feather last", "Gunpowder last", "Picul", "Rice last", "[/Archaic]",
+        "[Astronomical]", "A teaspoon of neutron star (5,500 million tonnes)", "Lunar mass (ML)", "Earth mass (M⊕)", "Jupiter mass (MJ)", "Solar mass (M☉)", "Sagittarius A* (7.5 x 10^36 kgs-ish)", "Milky Way galaxy (1.2 x 10^42 kgs)", "The observable universe (1.45 x 10^53 kgs)", "[/Astronomical]",
+        "[Comparisons]", "Big Ben (14 tonnes)", "Blue whale (180 tonnes)", "International Space Station (417 tonnes)", "Space Shuttle (2,041 tonnes)", "RMS Titanic (52,000 tonnes)", "Great Pyramid of Giza (6,000,000 tonnes)", "Earth's oceans (1.4 yottagrams)", "[/Comparisons]",
     ];
 
     function fillSelectWithGroups(id) {
@@ -88,8 +88,8 @@
       const value = parseFloat(document.getElementById('input-value').value);
       const fromUnit = document.getElementById('input-unit').value;
       const toUnit = document.getElementById('output-unit').value;
-      if (!isNaN(value) && typeof convertLength === 'function') {
-        const result = convertLength(value, fromUnit, toUnit);
+      if (!isNaN(value) && typeof convertWeight === 'function') {
+        const result = convertWeight(value, fromUnit, toUnit);
         document.getElementById('output').textContent = (result !== null) ? `${value} ${fromUnit} = ${result} ${toUnit}` : 'Invalid unit selection.';
       } else {
         document.getElementById('output').textContent = '';
@@ -101,8 +101,5 @@
     // Optionally, trigger conversion on page load if desired
     doConversion();
   </script>
-  <a href="length-converter.html">Length Converter</a>
-  <a href="area-converter.html">Area Converter</a>
-  <a href="weight-converter.html">Weight Converter</a>
 </body>
 </html>
