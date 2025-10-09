@@ -7,12 +7,12 @@
 /** Convert weight operation */
 
 const WEIGHT_UNITS = [
-    "[Metric]", "Yoctogram (yg)", "Zeptogram (zg)", "Attogram (ag)", "Femtogram (fg)", "Picogram (pg)", "Nanogram (ng)", "Microgram (μg)", "Milligram (mg)", "Centigram (cg)", "Decigram (dg)", "Gram (g)", "Decagram (dag)", "Hectogram (hg)", "Kilogram (kg)", "Megagram (Mg)", "Tonne (t)", "Gigagram (Gg)", "Teragram (Tg)", "Petagram (Pg)", "Exagram (Eg)", "Zettagram (Zg)", "Yottagram (Yg)", "[/Metric]",
-    "[Imperial Avoirdupois]", "Grain (gr)", "Dram (dr)", "Ounce (oz)", "Pound (lb)", "Nail", "Stone (st)", "Quarter (gr)", "Tod", "US hundredweight (cwt)", "Imperial hundredweight (cwt)", "US ton (t)", "Imperial ton (t)", "[/Imperial Avoirdupois]",
-    "[Imperial Troy]", "Grain (gr)", "Pennyweight (dwt)", "Troy dram (dr t)", "Troy ounce (oz t)", "Troy pound (lb t)", "Mark", "[/Imperial Troy]",
-    "[Archaic]", "Wey", "Wool wey", "Suffolk wey", "Wool sack", "Coal sack", "Load", "Last", "Flax or feather last", "Gunpowder last", "Picul", "Rice last", "[/Archaic]",
-    "[Astronomical]", "A teaspoon of neutron star (5,500 million tonnes)", "Lunar mass (ML)", "Earth mass (M⊕)", "Jupiter mass (MJ)", "Solar mass (M☉)", "Sagittarius A* (7.5 x 10^36 kgs-ish)", "Milky Way galaxy (1.2 x 10^42 kgs)", "The observable universe (1.45 x 10^53 kgs)", "[/Astronomical]",
-    "[Comparisons]", "Big Ben (14 tonnes)", "Blue whale (180 tonnes)", "International Space Station (417 tonnes)", "Space Shuttle (2,041 tonnes)", "RMS Titanic (52,000 tonnes)", "Great Pyramid of Giza (6,000,000 tonnes)", "Earth's oceans (1.4 yottagrams)", "[/Comparisons]",
+    "[Metric]", "Yoctogram (yg)", "Zeptogram (zg)", "Attogram (ag)", "Femtogram (fg)", "Picogram (pg)", "Nanogram (ng)", "Microgram (μg)", "Milligram (mg)", "Centigram (cg)", "Decigram (dg)", "Gram (g)", "Decagram (dag)", "Hectogram (hg)", "Kilogram (kg)", "Megagram (Mg)", "Tonne (t)", "Gigagram (Gg)", "Teragram (Tg)", "Petagram (Pg)", "Exagram (Eg)", "Zettagram (Zg)", "Yottagram (Yg)",
+    "[Imperial Avoirdupois]", "Grain (gr)", "Dram (dr)", "Ounce (oz)", "Pound (lb)", "Nail", "Stone (st)", "Quarter (gr)", "Tod", "US hundredweight (cwt)", "Imperial hundredweight (cwt)", "US ton (t)", "Imperial ton (t)",
+    "[Imperial Troy]", "Grain (gr)", "Pennyweight (dwt)", "Troy dram (dr t)", "Troy ounce (oz t)", "Troy pound (lb t)", "Mark",
+    "[Archaic]", "Wey", "Wool wey", "Suffolk wey", "Wool sack", "Coal sack", "Load", "Last", "Flax or feather last", "Gunpowder last", "Picul", "Rice last",
+    "[Astronomical]", "A teaspoon of neutron star (5,500 million tonnes)", "Lunar mass (ML)", "Earth mass (M⊕)", "Jupiter mass (MJ)", "Solar mass (M☉)", "Sagittarius A* (7.5 x 10^36 kgs-ish)", "Milky Way galaxy (1.2 x 10^42 kgs)", "The observable universe (1.45 x 10^53 kgs)",
+    "[Comparisons]", "Big Ben (14 tonnes)", "Blue whale (180 tonnes)", "International Space Station (417 tonnes)", "Space Shuttle (2,041 tonnes)", "RMS Titanic (52,000 tonnes)", "Great Pyramid of Giza (6,000,000 tonnes)", "Earth's oceans (1.4 yottagrams)",
 ];
 
 const WEIGHT_MULTIPLES = { // Multiples of a gram
