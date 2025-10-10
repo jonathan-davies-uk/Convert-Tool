@@ -1,7 +1,8 @@
 # Convert-Tool
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-A simple Unit Conversion tool.
+A simple Unit Conversion tool that operates on the client side.
 
 ## Table of Contents
 - [Convert-Tool](#convert-tool)
