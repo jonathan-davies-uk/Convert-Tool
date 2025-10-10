@@ -1,6 +1,6 @@
 # Convert-Tool
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
-[!Issues](https://img.shields.io/github/issues/jonathan-davies-uk/Convert-Tool?color=0088ff)
+[![Issues](https://img.shields.io/github/issues/jonathan-davies-uk/Convert-Tool?color=0088ff)](https://github.com/jonathan-davies-uk/Convert-Tool/issues)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 A simple Unit Conversion tool that operates on the client side.
