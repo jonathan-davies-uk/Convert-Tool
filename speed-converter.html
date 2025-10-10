@@ -31,13 +31,12 @@
     <meta name="keywords" content="keyword1, keyword2, keyword3">
     -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit Converter</title>
+    <title>Speed Converter</title>
     <link rel="assets/css/style.css href="style.css">
-    <script src="assets/js/Convert-Length.js" defer></script>
-    <script src="assets/js/Convert-Area.js" defer></script>
+    <script src="assets/js/Convert-Speed.js" defer></script>
 </head>
 <body>
-  <h1>Length Converter</h1>
+  <h1>Speed Converter</h1>
   <form id="converter-form" onsubmit="return false;">
   <label for="input-value">Value:</label>
   <input type="number" id="input-value" required step="any">
@@ -51,13 +50,12 @@
   <div id="output" style="margin-top:1em;font-weight:bold;"></div>
   <script>
 
-    // Use LENGTH_UNITS with optgroups
-    const rawUnits = window.LENGTH_UNITS || [
-      '[Metric]', 'Nanometres (nm)', 'Micrometres (μm)', 'Millimetres (mm)', 'Centimetres (cm)', 'Metres (m)', 'Kilometres (km)',
-      '[Imperial]', 'Thou (th)', 'Inches (in)', 'Feet (ft)', 'Yards (yd)', 'Chains (ch)', 'Furlongs (fur)', 'Miles (mi)', 'League (lea)',
-      '[Maritime]', 'Fathoms (ftm)', 'Cables', 'Nautical miles',
-      '[Astronomical]', 'Parsecs (pc)', 'Astronmical units (au)', 'Light years (ly)',
-      '[Comparisons]', 'Bus (8.4m)', 'Football pitch (100.6m)', 'Earth to Moon'
+    // Use SPEED_UNITS with optgroups
+    const rawUnits = window.SPEED_UNITS = [
+      "[Metric]", "Nanometers per second (nm/s)", "Micrometers per second (μm/s)", "Micrometers per second (μm/s)", "Millimeters per second (mm/s)", "Centimeters per second (cm/s)", "Centimeters per minute (cm/min)", "Metres per hour (m/h)", "Metres per minute (m/min)", "Kilometres per hour (km/h)", "Metres per second (m/s)", "Millimeters per minute (mm/min)", "Micrometers per minute (μm/min)", "Nanometers per minute (nm/min)", "Centimeters per hour (cm/h)", "Millimeters per hour (mm/h)", "Micrometers per hour (μm/h)", "Nanometers per hour (nm/h)", "Kilometres per minute (km/min)", "Kilometers per second (km/s)",
+      "[Imperial]", "Inches per hour (in/h)", "Feet per hour (ft/h)", "Furlongs per fornight", "Yards per hour (yd/h)", "Inches per minute (in/min)", "Feet per minute (ft/min)", "Yards per minute (yd/min)", "Inches per second (in/s)", "Feet per second (ft/s)", "Yards per second (yd/s)", "Miles per minute (mi/min)", "Miles per second (mi/s)",
+      "[Scientific]", "Sound in standard atmosphere", "Sound in water", "Lunar escape velocity", "Earth escape velocity", "Earth's solar orbit", "Solar system's Milky Way orbit", "Milky Way relative to the cosmic microwave background", "Solar escape velocity", "Neutron star escape velocity (0.3c)", "Light in a diamond (0.4136c)", "Signal in an optical fibre (0.667c)", "Light (c)", "Mach 1", "Mach 1 SI Standard",
+      "[Comparisons]", "Usain Bolt's top speed", "Jet airliner cruising speed", "Concorde", "SR-71 Blackbird", "Space Shuttle", "International Space Station",
     ];
 
     function fillSelectWithGroups(id) {
@@ -88,8 +86,8 @@
       const value = parseFloat(document.getElementById('input-value').value);
       const fromUnit = document.getElementById('input-unit').value;
       const toUnit = document.getElementById('output-unit').value;
-      if (!isNaN(value) && typeof convertLength === 'function') {
-        const result = convertLength(value, fromUnit, toUnit);
+      if (!isNaN(value) && typeof convertSpeed === 'function') {
+        const result = convertSpeed(value, fromUnit, toUnit);
         document.getElementById('output').textContent = (result !== null) ? `${value} ${fromUnit} = ${result} ${toUnit}` : 'Invalid unit selection.';
       } else {
         document.getElementById('output').textContent = '';
@@ -101,10 +99,5 @@
     // Optionally, trigger conversion on page load if desired
     doConversion();
   </script>
-  <h2>Common Converters</h2>
-  <a href="length-converter.html">Length Converter</a>
-  <a href="area-converter.html">Area Converter</a>
-  <a href="weight-converter.html">Weight Converter</a>
-  <a href="speed-converter.html">Speed Converter</a>
 </body>
 </html>
