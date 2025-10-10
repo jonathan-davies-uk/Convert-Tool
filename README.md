@@ -1,5 +1,6 @@
 # Convert-Tool
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+[!Issues](https://img.shields.io/github/issues/jonathan-davies-uk/Convert-Tool?color=0088ff)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 A simple Unit Conversion tool that operates on the client side.
@@ -14,7 +15,7 @@ A simple Unit Conversion tool that operates on the client side.
   - [License](#license)
 
 ## Background
-The truth behind this Unit Conversion tool is to experiment with Github Pages, SEO and Google Adsense. 
+The goal behind this Unit Conversion tool is to experiment with Github Pages, SEO and Google Adsense. 
 
 Firstly the tool will attempt to reach a Performance score on [PageSpeed Insights](https://pagespeed.web.dev/) of above 90.
 
