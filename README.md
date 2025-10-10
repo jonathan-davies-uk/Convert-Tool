@@ -4,11 +4,13 @@
 A simple Unit Conversion tool.
 
 ## Table of Contents
-- Background
-- Usage
-- Maintainers
-- Contributing
-- License
+- [Convert-Tool](#convert-tool)
+  - [Table of Contents](#table-of-contents)
+  - [Background](#background)
+  - [Usage](#usage)
+  - [Maintainers](#maintainers)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ## Background
 The truth behind this Unit Conversion tool is to experiment with Github Pages, SEO and Google Adsense. The goal is to try and reach the number one result on Google for results that could include the likes of **cm to m converter**, **kg to grams**, **celcius to fahrenheit** etc. Furthermore, the tool will attempt to reach a Performance score on [PageSpeed Insights](https://pagespeed.web.dev/) of above 90. Lastly, the site will be plumbed with [Google Adsense](https://adsense.google.com/) in an attempt to achieve a high RPM.
