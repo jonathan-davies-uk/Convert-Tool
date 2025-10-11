@@ -42,15 +42,15 @@ const TEMPERATURE_CONVERTER = {
     }
 };
 
-const tempIds = ['celsius','fahrenheit','kelvin','rankine','delisle','newton','reaumur','romer'];
+const TEMPERATURE_IDS = ['celsius','fahrenheit','kelvin','rankine','delisle','newton','reaumur','romer'];
 
 function setupTemperatureTable() {
-    tempIds.forEach(id => {
+    TEMPERATURE_IDS.forEach(id => {
         const el = document.getElementById('temperature-' + id);
         if (!el) return;
         el.addEventListener('input', function(e) {
             if (e.target.value === '') {
-                tempIds.forEach(otherId => {
+                TEMPERATURE_IDS.forEach(otherId => {
                     if (otherId !== id) {
                         const otherEl = document.getElementById('temperature-' + otherId);
                         if (otherEl) otherEl.value = '';
@@ -62,7 +62,7 @@ function setupTemperatureTable() {
             if (isNaN(val)) return;
             // Convert to Celsius, then update all others
             const celsius = TEMPERATURE_CONVERTER[id].toC(val);
-            tempIds.forEach(otherId => {
+            TEMPERATURE_IDS.forEach(otherId => {
                 if (otherId !== id) {
                     const otherEl = document.getElementById('temperature-' + otherId);
                     if (otherEl) otherEl.value = TEMPERATURE_CONVERTER[otherId].fromC(celsius);
