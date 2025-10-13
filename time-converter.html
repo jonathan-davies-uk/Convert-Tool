@@ -33,68 +33,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Time Converter</title>
     <link rel="assets/css/style.css href="style.css">
-    <script src="assets/js/Convert-Time.js" defer></script>
+  <script src="assets/js/Convert-Time.js" defer></script>
 </head>
 <body>
   <h1>Time Converter</h1>
   <form id="converter-form" onsubmit="return false;">
-  <label for="input-value">Value:</label>
-  <input type="number" id="input-value" required step="any">
-  <br>
-  <label for="input-unit">From:</label>
-  <select id="input-unit"></select>
-  <br>
-  <label for="output-unit">To:</label>
-  <select id="output-unit"></select>
+    <label for="input-value">Value:</label>
+    <input type="number" id="input-value" required step="any">
+    <br>
+    <label for="input-unit">From:</label>
+    <select id="input-unit"></select>
+    <br>
+    <label for="output-unit">To:</label>
+    <select id="output-unit"></select>
   </form>
   <div id="output" style="margin-top:1em;font-weight:bold;"></div>
-  <script>
-
-    // Use TIME_UNITS with optgroups
-    const rawUnits = window.TIME_UNITS = [
-      "[Time]", "Picoseconds (ps)", "Nanoseconds (ns)", "Microseconds (µs)", "Milliseconds (ms)", "Seconds (s)", "Minutes (min)", "Hours (h)", "Days (d)", "Weeks (wk)", "Months (mo)", "Years (yr)", "Decades", "Centuries", "Millennia",
-    ];
-
-    function fillSelectWithGroups(id) {
-      const sel = document.getElementById(id);
-      sel.innerHTML = '';
-      let currentOptGroup = null;
-      rawUnits.forEach(u => {
-        if (u.startsWith('[') && u.endsWith(']')) {
-          currentOptGroup = document.createElement('optgroup');
-          currentOptGroup.label = u.replace(/\[|\]/g, '');
-          sel.appendChild(currentOptGroup);
-        } else {
-          const opt = document.createElement('option');
-          opt.value = u;
-          opt.textContent = u;
-          if (currentOptGroup) {
-            currentOptGroup.appendChild(opt);
-          } else {
-            sel.appendChild(opt);
-          }
-        }
-      });
-    }
-    fillSelectWithGroups('input-unit');
-    fillSelectWithGroups('output-unit');
-
-    function doConversion() {
-      const value = parseFloat(document.getElementById('input-value').value);
-      const fromUnit = document.getElementById('input-unit').value;
-      const toUnit = document.getElementById('output-unit').value;
-      if (!isNaN(value) && typeof convertTime === 'function') {
-        const result = convertTime(value, fromUnit, toUnit);
-        document.getElementById('output').textContent = (result !== null) ? `${value} ${fromUnit} = ${result} ${toUnit}` : 'Invalid unit selection.';
-      } else {
-        document.getElementById('output').textContent = '';
-      }
-    }
-    document.getElementById('input-value').addEventListener('input', doConversion);
-    document.getElementById('input-unit').addEventListener('change', doConversion);
-    document.getElementById('output-unit').addEventListener('change', doConversion);
-    // Optionally, trigger conversion on page load if desired
-    doConversion();
-  </script>
 </body>
 </html>
