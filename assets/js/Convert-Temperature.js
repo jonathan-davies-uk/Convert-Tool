@@ -5,7 +5,6 @@
  */
 /** Convert Temperature operation */
 
-// --- Temperature conversion logic for table ---
 // Conversion functions to/from Celsius
 const TEMPERATURE_CONVERTER = {
     'celsius': {
