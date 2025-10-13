@@ -31,13 +31,12 @@
     <meta name="keywords" content="keyword1, keyword2, keyword3">
     -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit Converter</title>
+    <title>Time Converter</title>
     <link rel="assets/css/style.css href="style.css">
-    <script src="assets/js/Convert-Length.js" defer></script>
-    <script src="assets/js/Convert-Area.js" defer></script>
+    <script src="assets/js/Convert-Time.js" defer></script>
 </head>
 <body>
-  <h1>Length Converter</h1>
+  <h1>Time Converter</h1>
   <form id="converter-form" onsubmit="return false;">
   <label for="input-value">Value:</label>
   <input type="number" id="input-value" required step="any">
@@ -51,13 +50,9 @@
   <div id="output" style="margin-top:1em;font-weight:bold;"></div>
   <script>
 
-    // Use LENGTH_UNITS with optgroups
-    const rawUnits = window.LENGTH_UNITS || [
-      '[Metric]', 'Nanometres (nm)', 'Micrometres (μm)', 'Millimetres (mm)', 'Centimetres (cm)', 'Metres (m)', 'Kilometres (km)',
-      '[Imperial]', 'Thou (th)', 'Inches (in)', 'Feet (ft)', 'Yards (yd)', 'Chains (ch)', 'Furlongs (fur)', 'Miles (mi)', 'League (lea)',
-      '[Maritime]', 'Fathoms (ftm)', 'Cables', 'Nautical miles',
-      '[Astronomical]', 'Parsecs (pc)', 'Astronmical units (au)', 'Light years (ly)',
-      '[Comparisons]', 'Bus (8.4m)', 'Football pitch (100.6m)', 'Earth to Moon'
+    // Use TIME_UNITS with optgroups
+    const rawUnits = window.TIME_UNITS = [
+      "[Time]", "Picoseconds (ps)", "Nanoseconds (ns)", "Microseconds (µs)", "Milliseconds (ms)", "Seconds (s)", "Minutes (min)", "Hours (h)", "Days (d)", "Weeks (wk)", "Months (mo)", "Years (yr)", "Decades", "Centuries", "Millennia",
     ];
 
     function fillSelectWithGroups(id) {
@@ -88,8 +83,8 @@
       const value = parseFloat(document.getElementById('input-value').value);
       const fromUnit = document.getElementById('input-unit').value;
       const toUnit = document.getElementById('output-unit').value;
-      if (!isNaN(value) && typeof convertLength === 'function') {
-        const result = convertLength(value, fromUnit, toUnit);
+      if (!isNaN(value) && typeof convertTime === 'function') {
+        const result = convertTime(value, fromUnit, toUnit);
         document.getElementById('output').textContent = (result !== null) ? `${value} ${fromUnit} = ${result} ${toUnit}` : 'Invalid unit selection.';
       } else {
         document.getElementById('output').textContent = '';
@@ -101,12 +96,5 @@
     // Optionally, trigger conversion on page load if desired
     doConversion();
   </script>
-  <h2>Common Converters</h2>
-  <a href="length-converter.html">Length Converter</a>
-  <a href="area-converter.html">Area Converter</a>
-  <a href="weight-converter.html">Weight Converter</a>
-  <a href="speed-converter.html">Speed Converter</a>
-  <a href="temperature-converter.html">Temperature Converter</a>
-  <a href="time-converter.html">Time Converter</a>
 </body>
 </html>
