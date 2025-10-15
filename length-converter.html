@@ -42,63 +42,80 @@
   <input type="number" id="input-value" required step="any">
   <br>
   <label for="input-unit">From:</label>
-  <select id="input-unit"></select>
+  <select id="input-unit" size="10">
+    <optgroup label="Metric">
+      <option value="Nanometres (nm) [1e-9]">Nanometres (nm)</option>
+      <option value="Micrometres (μm) [1e-6]">Micrometres (μm)</option>
+      <option value="Millimetres (mm) [1e-3]">Millimetres (mm)</option>
+      <option value="Centimetres (cm) [1e-2]">Centimetres (cm)</option>
+      <option value="Metres (m) [1]">Metres (m)</option>
+      <option value="Kilometres (km) [1e3]">Kilometres (km)</option>
+    </optgroup>
+    <optgroup label="Imperial"> 
+      <option value="Thou (th) [0.0000254]">Thou (th)</option>
+      <option value="Inches (in) [0.0254]">Inches (in)</option>
+      <option value="Feet (ft) [0.3048]">Feet (ft)</option>
+      <option value="Yards (yd) [0.9144]">Yards (yd)</option>
+      <option value="Chains (ch) [20.1168]">Chains (ch)</option>
+      <option value="Furlongs (fur) [201.168]">Furlongs (fur)</option>
+      <option value="Miles (mi) [1609.344]">Miles (mi)</option>
+      <option value="League (lea) [4828.032]">League (lea)</option>
+    </optgroup>
+    <optgroup label="Maritime">
+      <option value="Fathoms (ftm) [1.853184]">Fathoms (ftm)</option>
+      <option value="Cables [185.3184]">Cables</option>
+      <option value="Nautical miles [1853.184]">Nautical miles</option>
+    </optgroup>
+    <optgroup label="Astronomical">
+      <option value="Parsecs (pc) [3.0856776e16]">Parsecs (pc)</option>
+      <option value="Astronmical units (au) [149597870700]">Astronmical units (au)</option>
+      <option value="Light years (ly) [9460730472580800]">Light years (ly)</option>
+    </optgroup>
+    <optgroup label="Comparisons">
+      <option value="Bus (8.4m) [4]">Bus (8.4m)</option>
+      <option value="Football pitch (100.6m) [100.6]">Football pitch (100.6m)</option>
+      <option value="Earth to Moon [380000000]">Earth to Moon</option>
+    </optgroup>
+  </select>
   <br>
   <label for="output-unit">To:</label>
-  <select id="output-unit"></select>
+  <select id="output-unit" size="10">
+      <optgroup label="Metric">
+      <option value="Nanometres (nm) [1e-9]">Nanometres (nm)</option>
+      <option value="Micrometres (μm) [1e-6]">Micrometres (μm)</option>
+      <option value="Millimetres (mm) [1e-3]">Millimetres (mm)</option>
+      <option value="Centimetres (cm) [1e-2]">Centimetres (cm)</option>
+      <option value="Metres (m) [1]">Metres (m)</option>
+      <option value="Kilometres (km) [1e3]">Kilometres (km)</option>
+    </optgroup>
+    <optgroup label="Imperial"> 
+      <option value="Thou (th) [0.0000254]">Thou (th)</option>
+      <option value="Inches (in) [0.0254]">Inches (in)</option>
+      <option value="Feet (ft) [0.3048]">Feet (ft)</option>
+      <option value="Yards (yd) [0.9144]">Yards (yd)</option>
+      <option value="Chains (ch) [20.1168]">Chains (ch)</option>
+      <option value="Furlongs (fur) [201.168]">Furlongs (fur)</option>
+      <option value="Miles (mi) [1609.344]">Miles (mi)</option>
+      <option value="League (lea) [4828.032]">League (lea)</option>
+    </optgroup>
+    <optgroup label="Maritime">
+      <option value="Fathoms (ftm) [1.853184]">Fathoms (ftm)</option>
+      <option value="Cables [185.3184]">Cables</option>
+      <option value="Nautical miles [1853.184]">Nautical miles</option>
+    </optgroup>
+    <optgroup label="Astronomical">
+      <option value="Parsecs (pc) [3.0856776e16]">Parsecs (pc)</option>
+      <option value="Astronmical units (au) [149597870700]">Astronmical units (au)</option>
+      <option value="Light years (ly) [9460730472580800]">Light years (ly)</option>
+    </optgroup>
+    <optgroup label="Comparisons">
+      <option value="Bus (8.4m) [4]">Bus (8.4m)</option>
+      <option value="Football pitch (100.6m) [100.6]">Football pitch (100.6m)</option>
+      <option value="Earth to Moon [380000000]">Earth to Moon</option>
+    </optgroup>
+  </select>
   </form>
   <div id="output" style="margin-top:1em;font-weight:bold;"></div>
-  <script>
-
-    // Use LENGTH_UNITS with optgroups
-    const rawUnits = window.LENGTH_UNITS || [
-      '[Metric]', 'Nanometres (nm)', 'Micrometres (μm)', 'Millimetres (mm)', 'Centimetres (cm)', 'Metres (m)', 'Kilometres (km)',
-      '[Imperial]', 'Thou (th)', 'Inches (in)', 'Feet (ft)', 'Yards (yd)', 'Chains (ch)', 'Furlongs (fur)', 'Miles (mi)', 'League (lea)',
-      '[Maritime]', 'Fathoms (ftm)', 'Cables', 'Nautical miles',
-      '[Astronomical]', 'Parsecs (pc)', 'Astronmical units (au)', 'Light years (ly)',
-      '[Comparisons]', 'Bus (8.4m)', 'Football pitch (100.6m)', 'Earth to Moon'
-    ];
-
-    function fillSelectWithGroups(id) {
-      const sel = document.getElementById(id);
-      sel.innerHTML = '';
-      let currentOptGroup = null;
-      rawUnits.forEach(u => {
-        if (u.startsWith('[') && u.endsWith(']')) {
-          currentOptGroup = document.createElement('optgroup');
-          currentOptGroup.label = u.replace(/\[|\]/g, '');
-          sel.appendChild(currentOptGroup);
-        } else {
-          const opt = document.createElement('option');
-          opt.value = u;
-          opt.textContent = u;
-          if (currentOptGroup) {
-            currentOptGroup.appendChild(opt);
-          } else {
-            sel.appendChild(opt);
-          }
-        }
-      });
-    }
-    fillSelectWithGroups('input-unit');
-    fillSelectWithGroups('output-unit');
-
-    function doConversion() {
-      const value = parseFloat(document.getElementById('input-value').value);
-      const fromUnit = document.getElementById('input-unit').value;
-      const toUnit = document.getElementById('output-unit').value;
-      if (!isNaN(value) && typeof convertLength === 'function') {
-        const result = convertLength(value, fromUnit, toUnit);
-        document.getElementById('output').textContent = (result !== null) ? `${value} ${fromUnit} = ${result} ${toUnit}` : 'Invalid unit selection.';
-      } else {
-        document.getElementById('output').textContent = '';
-      }
-    }
-    document.getElementById('input-value').addEventListener('input', doConversion);
-    document.getElementById('input-unit').addEventListener('change', doConversion);
-    document.getElementById('output-unit').addEventListener('change', doConversion);
-    // Optionally, trigger conversion on page load if desired
-    doConversion();
-  </script>
+  <!-- All JavaScript has been moved to assets/js/Convert-Length.js -->
 </body>
 </html>

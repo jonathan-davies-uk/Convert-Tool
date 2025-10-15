@@ -6,64 +6,67 @@
 
 /** Convert length operation */
 
-const LENGTH_UNITS = [
-    "[Metric]", "Nanometres (nm)", "Micrometres (µm)", "Millimetres (mm)", "Centimetres (cm)", "Metres (m)", "Kilometers (km)",
-    "[Imperial]", "Thou (th)", "Inches (in)", "Feet (ft)", "Yards (yd)", "Chains (ch)", "Furlongs (fur)", "Miles (mi)", "Leagues (lea)",
-    "[Maritime]", "Fathoms (ftm)", "Cables", "Nautical miles",
-    "[Astronomical]", "Parsecs (pc)", "Astronomical units (au)", "Light-years (ly)",
-    "[Comparisons]", "Bus (8.4m)", "Football pitch (100.6mm)",
-];
-
-const LENGTH_MULTIPLE = { // Multiple of metres
-    //Metric
-    "Nanometres (nm)":          1e-9,
-    "Micrometres (μm)":         1e-6,
-    "Millimetres (mm)":         1e-3,
-    "Centimetres (cm)":         1e-2,
-    "Metres (m)":               1,
-    "Kilometres (km)":          1e3,
-
-    //Imperial
-    "Thou (th)":                0.0000254,
-    "Inches (in)":              0.0254,
-    "Feet (ft)":                0.3048,
-    "Yards (yd)":               0.9144,
-    "Chains (ch)":              20.1168,
-    "Furlongs (fur)":           201.168,
-    "Miles (mi)":               1609.344,
-    "League (lea)":             4828.032,
-
-    //Maritime
-    "Fathoms (ftm)":            1.853184,
-    "Cables":                   185.3184,
-    "Nautical miles":           1853.184,
-
-    //Astronomical
-    "Parsecs (pc)":             3.0856776e16,
-    "Astronmical units (au)":   149597870700,
-    "Light years (ly)":         9460730472580800,
-
-    //Comparison
-    "Bus (8.4m)":4,
-    "Football pitch (100.6m)":  100.6,
-    "Earth to Moon":            380000000
-};
 
 /**
- * Converts a length value from one unit to another using LENGTH_MULTIPLE.
- * @param {number} value - The numeric value to convert.
- * @param {string} fromUnit - The unit to convert from (must match a key in LENGTH_MULTIPLE).
- * @param {string} toUnit - The unit to convert to (must match a key in LENGTH_MULTIPLE).
- * @returns {number|null} - The converted value, or null if units are invalid.
+ * Extracts the unit name and multiplier from an <option> value string.
+ * Example value: "Nanometres (nm) [1e-9]"
+ * Returns: { name: "Nanometres (nm)", multiplier: 1e-9 }
  */
-function convertLength(value, fromUnit, toUnit) {
-    if (!(fromUnit in LENGTH_MULTIPLE) || !(toUnit in LENGTH_MULTIPLE)) {
-        return null;
+function parseUnitOption(optionValue) {
+    // Match: name (shorthand) [multiplier]
+    const match = optionValue.match(/^([^\[]+)(?:\s*\[[^\]]+\])?$/);
+    let name = optionValue, multiplier = null;
+    if (match) {
+        // Extract name (before [)
+        name = match[1].trim();
+        // Extract multiplier in []
+        const multMatch = optionValue.match(/\[([^\]]+)\]/);
+        if (multMatch) {
+            multiplier = parseFloat(multMatch[1].replace(/,/g, ''));
+            if (isNaN(multiplier)) {
+                // Try scientific notation
+                multiplier = Number(multMatch[1]);
+            }
+        }
     }
-    // Convert from the source unit to metres, then to the target unit
-    const valueInMetres = value * LENGTH_MULTIPLE[fromUnit];
-    return valueInMetres / LENGTH_MULTIPLE[toUnit];
+    return { name, multiplier };
 }
 
-const result = convertLength(100, "Centimetres (cm)", "Metres (m)");
-console.log(result);
+/**
+ * Converts a length value from one unit to another using multipliers from the HTML <option> values.
+ * @param {number} value - The numeric value to convert.
+ * @param {string} fromOptionValue - The value attribute of the from-unit <option>.
+ * @param {string} toOptionValue - The value attribute of the to-unit <option>.
+ * @returns {number|null} - The converted value, or null if units are invalid.
+ */
+function convertLength(value, fromOptionValue, toOptionValue) {
+    const from = parseUnitOption(fromOptionValue);
+    const to = parseUnitOption(toOptionValue);
+    if (!from.multiplier || !to.multiplier) return null;
+    const valueInMetres = value * from.multiplier;
+    return valueInMetres / to.multiplier;
+}
+
+/**
+ * Handles user input and updates the output field with the converted value.
+ * Reads the value, from-unit, and to-unit from the form, performs conversion, and displays the result.
+ */
+function doConversion() {
+    const value = parseFloat(document.getElementById('input-value').value);
+    const fromOption = document.getElementById('input-unit').value;
+    const toOption = document.getElementById('output-unit').value;
+    if (!isNaN(value)) {
+        const result = convertLength(value, fromOption, toOption);
+        document.getElementById('output').textContent = (result !== null) ? `${value} ${parseUnitOption(fromOption).name} = ${result} ${parseUnitOption(toOption).name}` : 'Invalid unit selection.';
+    } else {
+        document.getElementById('output').textContent = '';
+    }
+}
+
+// Attach event listeners and trigger initial conversion when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('input-value').addEventListener('input', doConversion);
+    document.getElementById('input-unit').addEventListener('change', doConversion);
+    document.getElementById('output-unit').addEventListener('change', doConversion);
+    doConversion();
+});
