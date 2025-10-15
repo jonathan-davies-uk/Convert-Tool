@@ -39,12 +39,12 @@
   <h1>Area Converter</h1>
   <form id="converter-form" onsubmit="return false;">
   <label for="input-value">Value:</label>
-  <input type="number" id="input-value" required step="any">
+  <input type="number" id="input-value" required step="any" value="1">
   <br>
   <label for="input-unit">From:</label>
   <select id="input-unit" size="10">
     <optgroup label="Metric">
-      <option value="Square metre (sq m) [1]">Square metre (sq m)</option>
+      <option value="Square metre (sq m) [1]" selected>Square metre (sq m)</option>
       <option value="Square kilometre (sq km) [1e6]">Square kilometre (sq km)</option>
       <option value="Centiare (ca) [1e-4]">Centiare (ca)</option>
       <option value="Deciare (da) [1e-3]">Deciare (da)</option>
@@ -86,9 +86,9 @@
   <br>
   <label for="output-unit">To:</label>
   <select id="output-unit" size="10">
-        <optgroup label="Metric">
+    <optgroup label="Metric">
       <option value="Square metre (sq m) [1]">Square metre (sq m)</option>
-      <option value="Square kilometre (sq km) [1e6]">Square kilometre (sq km)</option>
+      <option value="Square kilometre (sq km) [1e6]" selected>Square kilometre (sq km)</option>
       <option value="Centiare (ca) [1e-4]">Centiare (ca)</option>
       <option value="Deciare (da) [1e-3]">Deciare (da)</option>
       <option value="Are (a) [100]">Are (a)</option>
