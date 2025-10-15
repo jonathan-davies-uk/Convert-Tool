@@ -33,7 +33,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Area Converter</title>
     <link rel="assets/css/style.css href="style.css">
-    <script src="assets/js/Convert-Area.js" defer></script>
+    <script src="assets/js/Convert-Operation.js" defer></script>
 </head>
 <body>
   <h1>Area Converter</h1>
@@ -42,10 +42,90 @@
   <input type="number" id="input-value" required step="any">
   <br>
   <label for="input-unit">From:</label>
-  <select id="input-unit"></select>
+  <select id="input-unit" size="10">
+    <optgroup label="Metric">
+      <option value="Square metre (sq m) [1]">Square metre (sq m)</option>
+      <option value="Square kilometre (sq km) [1e6]">Square kilometre (sq km)</option>
+      <option value="Centiare (ca) [1e-4]">Centiare (ca)</option>
+      <option value="Deciare (da) [1e-3]">Deciare (da)</option>
+      <option value="Are (a) [100]">Are (a)</option>
+      <option value="Decare (daa) [1000]">Decare (daa)</option>
+      <option value="Hectare (ha) [10000]">Hectare (ha)</option>
+    </optgroup>
+    <optgroup label="Imperial"> 
+      <option value="Square inch (sq in) [0.00064516]">Square inch (sq in)</option>
+      <option value="Square foot (sq ft) [0.09290304]">Square foot (sq ft)</option>
+      <option value="Square yard (sq yd) [0.83612736]">Square yard (sq yd)</option>
+      <option value="Square mile (sq mi) [2589988.110336]">Square mile (sq mi)</option>
+      <option value="Perch (sq per) [25.29285264]">Perch (sq per)</option>
+      <option value="Rood (ro) [1011.7141056]">Rood (ro)</option>
+      <option value="International acre (ac) [4046.8564224]">International acre (ac)</option>
+    </optgroup>
+    <optgroup label="US customary units">
+      <option value="US survey acre (ac) [4046.87261]">US survey acre (ac)</option>
+      <option value="US survey square mile (sq mi) [2589988.232]">US survey square mile (sq mi)</option>
+      <option value="US survey township [93239571.2]">US survey township</option>
+    </optgroup>
+    <optgroup label="Nuclear physics">
+      <option value="Yoctobarn (yb) [1e-52]">Yoctobarn (yb)</option>
+      <option value="Zeptobarn (zb) [1e-51]">Zeptobarn (zb)</option>
+      <option value="Attobarn (ab) [1e-48]">Attobarn (ab)</option>
+      <option value="Femtobarn (fb) [1e-43]">Femtobarn (fb)</option>
+      <option value="Picobarn (pb) [1e-40]">Picobarn (pb)</option>
+      <option value="Nanobarn (nb) [1e-37]">Nanobarn (nb)</option>
+      <option value="Microbarn (μb) [1e-34]">Microbarn (μb)</option>
+      <option value="Millibarn (mb) [1e-31]">Millibarn (mb)</option>
+      <option value="Barn (b) [1e-28]">Barn (b)</option>
+      <option value="Kilobarn (kb) [1e-25]">Kilobarn (kb)</option>
+      <option value="Megabarn (Mb) [1e-22]">Megabarn (Mb)</option>
+      <option value="Outhouse [9.290304]">Outhouse</option>
+      <option value="Shed [929.0304]">Shed</option>
+      <option value="Planck area [2.61217663e-70]">Planck area</option>
+    </optgroup>
+  </select>
   <br>
   <label for="output-unit">To:</label>
-  <select id="output-unit"></select>
+  <select id="output-unit" size="10">
+        <optgroup label="Metric">
+      <option value="Square metre (sq m) [1]">Square metre (sq m)</option>
+      <option value="Square kilometre (sq km) [1e6]">Square kilometre (sq km)</option>
+      <option value="Centiare (ca) [1e-4]">Centiare (ca)</option>
+      <option value="Deciare (da) [1e-3]">Deciare (da)</option>
+      <option value="Are (a) [100]">Are (a)</option>
+      <option value="Decare (daa) [1000]">Decare (daa)</option>
+      <option value="Hectare (ha) [10000]">Hectare (ha)</option>
+    </optgroup>
+    <optgroup label="Imperial"> 
+      <option value="Square inch (sq in) [0.00064516]">Square inch (sq in)</option>
+      <option value="Square foot (sq ft) [0.09290304]">Square foot (sq ft)</option>
+      <option value="Square yard (sq yd) [0.83612736]">Square yard (sq yd)</option>
+      <option value="Square mile (sq mi) [2589988.110336]">Square mile (sq mi)</option>
+      <option value="Perch (sq per) [25.29285264]">Perch (sq per)</option>
+      <option value="Rood (ro) [1011.7141056]">Rood (ro)</option>
+      <option value="International acre (ac) [4046.8564224]">International acre (ac)</option>
+    </optgroup>
+    <optgroup label="US customary units">
+      <option value="US survey acre (ac) [4046.87261]">US survey acre (ac)</option>
+      <option value="US survey square mile (sq mi) [2589988.232]">US survey square mile (sq mi)</option>
+      <option value="US survey township [93239571.2]">US survey township</option>
+    </optgroup>
+    <optgroup label="Nuclear physics">
+      <option value="Yoctobarn (yb) [1e-52]">Yoctobarn (yb)</option>
+      <option value="Zeptobarn (zb) [1e-51]">Zeptobarn (zb)</option>
+      <option value="Attobarn (ab) [1e-48]">Attobarn (ab)</option>
+      <option value="Femtobarn (fb) [1e-43]">Femtobarn (fb)</option>
+      <option value="Picobarn (pb) [1e-40]">Picobarn (pb)</option>
+      <option value="Nanobarn (nb) [1e-37]">Nanobarn (nb)</option>
+      <option value="Microbarn (μb) [1e-34]">Microbarn (μb)</option>
+      <option value="Millibarn (mb) [1e-31]">Millibarn (mb)</option>
+      <option value="Barn (b) [1e-28]">Barn (b)</option>
+      <option value="Kilobarn (kb) [1e-25]">Kilobarn (kb)</option>
+      <option value="Megabarn (Mb) [1e-22]">Megabarn (Mb)</option>
+      <option value="Outhouse [9.290304]">Outhouse</option>
+      <option value="Shed [929.0304]">Shed</option>
+      <option value="Planck area [2.61217663e-70]">Planck area</option>
+    </optgroup>
+  </select>
   </form>
   <div id="output" style="margin-top:1em;font-weight:bold;"></div>
   <script>
@@ -57,47 +137,6 @@
       "[US customary units]", "US survey acre (ac)", "US survey square mile (sq mi)", "US survey township",
       "[Nuclear physics]", "Yoctobarn (yb)", "Zeptobarn (zb)", "Attobarn (ab)", "Femtobarn (fb)", "Picobarn (pb)", "Nanobarn (nb)", "Microbarn (μb)", "Millibarn (mb)", "Barn (b)", "Kilobarn (kb)", "Megabarn (Mb)", "Outhouse", "Shed", "Planck area",
     ];
-
-    function fillSelectWithGroups(id) {
-      const sel = document.getElementById(id);
-      sel.innerHTML = '';
-      let currentOptGroup = null;
-      rawUnits.forEach(u => {
-        if (u.startsWith('[') && u.endsWith(']')) {
-          currentOptGroup = document.createElement('optgroup');
-          currentOptGroup.label = u.replace(/\[|\]/g, '');
-          sel.appendChild(currentOptGroup);
-        } else {
-          const opt = document.createElement('option');
-          opt.value = u;
-          opt.textContent = u;
-          if (currentOptGroup) {
-            currentOptGroup.appendChild(opt);
-          } else {
-            sel.appendChild(opt);
-          }
-        }
-      });
-    }
-    fillSelectWithGroups('input-unit');
-    fillSelectWithGroups('output-unit');
-
-    function doConversion() {
-      const value = parseFloat(document.getElementById('input-value').value);
-      const fromUnit = document.getElementById('input-unit').value;
-      const toUnit = document.getElementById('output-unit').value;
-      if (!isNaN(value) && typeof convertArea === 'function') {
-        const result = convertArea(value, fromUnit, toUnit);
-        document.getElementById('output').textContent = (result !== null) ? `${value} ${fromUnit} = ${result} ${toUnit}` : 'Invalid unit selection.';
-      } else {
-        document.getElementById('output').textContent = '';
-      }
-    }
-    document.getElementById('input-value').addEventListener('input', doConversion);
-    document.getElementById('input-unit').addEventListener('change', doConversion);
-    document.getElementById('output-unit').addEventListener('change', doConversion);
-    // Optionally, trigger conversion on page load if desired
-    doConversion();
-  </script>
+</script>
 </body>
 </html>

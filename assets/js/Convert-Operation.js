@@ -4,7 +4,7 @@
  * @license Apache-2.0
  */
 
-/** Convert length operation */
+/** Unit Converion operation for all calculations */
 
 
 /**
@@ -33,13 +33,13 @@ function parseUnitOption(optionValue) {
 }
 
 /**
- * Converts a length value from one unit to another using multipliers from the HTML <option> values.
+ * Converts a unit value from one unit to another using multipliers from the HTML <option> values.
  * @param {number} value - The numeric value to convert.
  * @param {string} fromOptionValue - The value attribute of the from-unit <option>.
  * @param {string} toOptionValue - The value attribute of the to-unit <option>.
  * @returns {number|null} - The converted value, or null if units are invalid.
  */
-function convertLength(value, fromOptionValue, toOptionValue) {
+function convertUnit(value, fromOptionValue, toOptionValue) {
     const from = parseUnitOption(fromOptionValue);
     const to = parseUnitOption(toOptionValue);
     if (!from.multiplier || !to.multiplier) return null;
@@ -50,16 +50,22 @@ function convertLength(value, fromOptionValue, toOptionValue) {
 /**
  * Handles user input and updates the output field with the converted value.
  * Reads the value, from-unit, and to-unit from the form, performs conversion, and displays the result.
+ * @param {number} value - The numeric value to convert.
+ * @param {string} fromOptionValue - The value attribute of the from-unit <option>.
+ * @param {string} toOptionValue - The value attribute of the to-unit <option>.
+ * @returns {number|null} - The converted value, or null if units are invalid.
  */
 function doConversion() {
     const value = parseFloat(document.getElementById('input-value').value);
     const fromOption = document.getElementById('input-unit').value;
     const toOption = document.getElementById('output-unit').value;
     if (!isNaN(value)) {
-        const result = convertLength(value, fromOption, toOption);
+        const result = convertUnit(value, fromOption, toOption);
         document.getElementById('output').textContent = (result !== null) ? `${value} ${parseUnitOption(fromOption).name} = ${result} ${parseUnitOption(toOption).name}` : 'Invalid unit selection.';
+        document.getElementById('output').setAttribute('data-value', `${value} ${parseUnitOption(fromOption).name} = ${result} ${parseUnitOption(toOption).name}`);
     } else {
         document.getElementById('output').textContent = '';
+        document.getElementById('output').removeAttribute('data-value');
     }
 }
 
