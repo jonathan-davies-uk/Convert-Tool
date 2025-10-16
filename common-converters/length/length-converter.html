@@ -1,0 +1,140 @@
+<!--
+    Convert Tool 
+
+    @copyright Jonathan Davies 2025
+    @license Apache-2.0
+
+      Copyright 2025 Jonathan Davies
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <!-- 
+    <meta name="copyright" content="copyright here">
+    <meta name="license" content="license here"> 
+    <meta name="author" content="Jonathan Davies">
+    <meta name="description" content="generic description of the page">
+    <meta name="keywords" content="keyword1, keyword2, keyword3">
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Length Converter</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
+    <script src="../../assets/js/Convert-Operation.js" defer></script>
+</head>
+<body>
+  <h1>Length Converter</h1>
+  <form id="converter-form" onsubmit="return false;">
+    <table>
+      <tr>
+        <td colspan="2">
+          <output form="converter-form" for="input-value" id="output" style="margin-top:1em;font-weight:bold;">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="input-value">Value:</label>
+          <input type="number" id="input-value" required step="any" value="1">
+        </td>
+        <td>
+          <label for="output-value">Value:</label>
+          <output form="converter-form" type="number" id="output-value" step="any" style="border: 1px solid black; background-color: #f9f9f9;"  readonly>
+        </td>
+      </tr>
+      <tr>
+        <td>
+            <label for="input-unit">From:</label>
+            <select id="input-unit" size="10">
+              <optgroup label="Metric">
+                <option data-unit-name="Nanometres" data-unit-shorthand="nm" data-unit-multiplier="1e-9">Nanometres (nm)</option>
+                <option data-unit-name="Micrometres" data-unit-shorthand="μm" data-unit-multiplier="1e-6">Micrometres (μm)</option>
+                <option data-unit-name="Millimetres" data-unit-shorthand="mm" data-unit-multiplier="1e-3">Millimetres (mm)</option>
+                <option data-unit-name="Centimetres" data-unit-shorthand="cm" data-unit-multiplier="1e-2">Centimetres (cm)</option>
+                <option data-unit-name="Metres" data-unit-shorthand="m" data-unit-multiplier="1" selected>Metres (m)</option>
+                <option data-unit-name="Kilometres" data-unit-shorthand="km" data-unit-multiplier="1e3">Kilometres (km)</option>
+              </optgroup>
+              <optgroup label="Imperial"> 
+                <option data-unit-name="Thou" data-unit-shorthand="th" data-unit-multiplier="0.0000254">Thou (th)</option>
+                <option data-unit-name="Inches" data-unit-shorthand="in" data-unit-multiplier="0.0254">Inches (in)</option>
+                <option data-unit-name="Feet" data-unit-shorthand="ft" data-unit-multiplier="0.3048">Feet (ft)</option>
+                <option data-unit-name="Yards" data-unit-shorthand="yd" data-unit-multiplier="0.9144">Yards (yd)</option>
+                <option data-unit-name="Chains" data-unit-shorthand="ch" data-unit-multiplier="20.1168">Chains (ch)</option>
+                <option data-unit-name="Furlongs" data-unit-shorthand="fur" data-unit-multiplier="201.168">Furlongs (fur)</option>
+                <option data-unit-name="Miles" data-unit-shorthand="mi" data-unit-multiplier="1609.344">Miles (mi)</option>
+                <option data-unit-name="League" data-unit-shorthand="lea" data-unit-multiplier="4828.032">League (lea)</option>
+              </optgroup>
+              <optgroup label="Maritime">
+                <option value="Fathoms (ftm) [1.853184]" data-unit-name="Fathoms" data-unit-shorthand="ftm" data-unit-multiplier="1.853184">Fathoms (ftm)</option>
+                <option value="Cables [185.3184]" data-unit-name="Cables" data-unit-shorthand="" data-unit-multiplier="185.3184">Cables</option>
+                <option value="Nautical miles [1853.184]" data-unit-name="Nautical miles" data-unit-shorthand="" data-unit-multiplier="1853.184">Nautical miles</option>
+              </optgroup>
+              <optgroup label="Astronomical">
+                <option data-unit-name="Parsecs" data-unit-shorthand="pc" data-unit-multiplier="3.0856776e16">Parsecs (pc)</option>
+                <option data-unit-name="Astronmical units" data-unit-shorthand="au" data-unit-multiplier="149597870700">Astronmical units (au)</option>
+                <option data-unit-name="Light years" data-unit-shorthand="ly" data-unit-multiplier="9460730472580800">Light years (ly)</option>
+              </optgroup>
+              <optgroup label="Comparisons">
+                <option data-unit-name="Bus" data-unit-shorthand="" data-unit-multiplier="4">Bus (8.4m)</option>
+                <option data-unit-name="Football pitch" data-unit-shorthand="" data-unit-multiplier="100.6">Football pitch (100.6m)</option>
+                <option data-unit-name="Earth to Moon" data-unit-shorthand="" data-unit-multiplier="380000000">Earth to Moon</option>
+              </optgroup>
+            </select>
+        </td>
+        <td>
+          <label for="output-unit">To:</label>
+          <select id="output-unit" size="10">
+            <optgroup label="Metric">
+              <option data-unit-name="Nanometres" data-unit-shorthand="(nm)" data-unit-multiplier="1e-9">Nanometres (nm)</option>
+              <option data-unit-name="Micrometres" data-unit-shorthand="μm" data-unit-multiplier="1e-6">Micrometres (μm)</option>
+              <option data-unit-name="Millimetres" data-unit-shorthand="mm" data-unit-multiplier="1e-3">Millimetres (mm)</option>
+              <option data-unit-name="Centimetres" data-unit-shorthand="cm" data-unit-multiplier="1e-2" selected>Centimetres (cm)</option>
+              <option data-unit-name="Metres" data-unit-shorthand="m" data-unit-multiplier="1">Metres (m)</option>
+              <option data-unit-name="Kilometres" data-unit-shorthand="km" data-unit-multiplier="1e3">Kilometres (km)</option>
+            </optgroup>
+            <optgroup label="Imperial"> 
+              <option data-unit-name="Thou" data-unit-shorthand="th" data-unit-multiplier="0.0000254">Thou (th)</option>
+              <option data-unit-name="Inches" data-unit-shorthand="in" data-unit-multiplier="0.0254">Inches (in)</option>
+              <option data-unit-name="Feet" data-unit-shorthand="ft" data-unit-multiplier="0.3048">Feet (ft)</option>
+              <option data-unit-name="Yards" data-unit-shorthand="yd" data-unit-multiplier="0.9144">Yards (yd)</option>
+              <option data-unit-name="Chains" data-unit-shorthand="ch" data-unit-multiplier="20.1168">Chains (ch)</option>                <option data-unit-name="Furlongs" data-unit-shorthand="fur" data-unit-multiplier="201.168">Furlongs (fur)</option>
+              <option data-unit-name="Miles" data-unit-shorthand="mi" data-unit-multiplier="1609.344">Miles (mi)</option>
+              <option data-unit-name="League" data-unit-shorthand="lea" data-unit-multiplier="4828.032">League (lea)</option>
+            </optgroup>
+            <optgroup label="Maritime">
+              <option value="Fathoms (ftm) [1.853184]" data-unit-name="Fathoms" data-unit-shorthand="ftm" data-unit-multiplier="1.853184">Fathoms (ftm)</option>
+              <option value="Cables [185.3184]" data-unit-name="Cables" data-unit-shorthand="" data-unit-multiplier="185.3184">Cables</option>
+              <option value="Nautical miles [1853.184]" data-unit-name="Nautical miles" data-unit-shorthand="" data-unit-multiplier="1853.184">Nautical miles</option>
+            </optgroup>
+            <optgroup label="Astronomical">
+              <option data-unit-name="Parsecs" data-unit-shorthand="pc" data-unit-multiplier="3.0856776e16">Parsecs (pc)</option>
+              <option data-unit-name="Astronmical units" data-unit-shorthand="au" data-unit-multiplier="149597870700">Astronmical units (au)</option>
+              <option data-unit-name="Light years" data-unit-shorthand="ly" data-unit-multiplier="9460730472580800">Light years (ly)</option>
+            </optgroup>
+            <optgroup label="Comparisons">
+              <option data-unit-name="Bus" data-unit-shorthand="" data-unit-multiplier="4">Bus (8.4m)</option>
+              <option data-unit-name="Football pitch" data-unit-shorthand="" data-unit-multiplier="100.6">Football pitch (100.6m)</option>
+              <option data-unit-name="Earth to Moon" data-unit-shorthand="" data-unit-multiplier="380000000">Earth to Moon</option>
+            </optgroup>
+          </select>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <h2>Popular length unit conversions</h2>
+  <a href="m-to-cm.html">m to cm</a>
+  <a href="mm-to-inches.html">mm to inches</a>
+</body>
+</html>

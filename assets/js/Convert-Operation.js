@@ -7,65 +7,65 @@
 /** Unit Converion operation for all calculations */
 
 
+
 /**
- * Extracts the unit name and multiplier from an <option> value string.
- * Example value: "Nanometres (nm) [1e-9]"
- * Returns: { name: "Nanometres (nm)", multiplier: 1e-9 }
+ * Gets the unit name, shorthand, and multiplier from a <select> element's selected <option>.
+ * @param {HTMLSelectElement} select - The select element.
+ * @returns {{ name: string, shorthand: string|null, multiplier: number|null }}
  */
-function parseUnitOption(optionValue) {
-    // Match: name (shorthand) [multiplier]
-    const match = optionValue.match(/^([^\[]+)(?:\s*\[[^\]]+\])?$/);
-    let name = optionValue, multiplier = null;
-    if (match) {
-        // Extract name (before [)
-        name = match[1].trim();
-        // Extract multiplier in []
-        const multMatch = optionValue.match(/\[([^\]]+)\]/);
-        if (multMatch) {
-            multiplier = parseFloat(multMatch[1].replace(/,/g, ''));
-            if (isNaN(multiplier)) {
-                // Try scientific notation
-                multiplier = Number(multMatch[1]);
-            }
-        }
-    }
-    return { name, multiplier };
+function getUnitData(select) {
+    const opt = select.options[select.selectedIndex];
+    if (!opt) return { name: '', shorthand: '', multiplier: null };
+    const name = opt.getAttribute('data-unit-name') || '';
+    const shorthand = opt.getAttribute('data-unit-shorthand') || '';
+    const multiplier = opt.getAttribute('data-unit-multiplier');
+    return { name, shorthand, multiplier: isNaN(multiplier) ? null : multiplier };
 }
 
 /**
- * Converts a unit value from one unit to another using multipliers from the HTML <option> values.
+ * Converts a unit value from one unit to another using multipliers from the HTML <option> data attributes.
  * @param {number} value - The numeric value to convert.
- * @param {string} fromOptionValue - The value attribute of the from-unit <option>.
- * @param {string} toOptionValue - The value attribute of the to-unit <option>.
+ * @param {number} fromMultiplier - The multiplier for the from-unit.
+ * @param {number} toMultiplier - The multiplier for the to-unit.
  * @returns {number|null} - The converted value, or null if units are invalid.
  */
-function convertUnit(value, fromOptionValue, toOptionValue) {
-    const from = parseUnitOption(fromOptionValue);
-    const to = parseUnitOption(toOptionValue);
-    if (!from.multiplier || !to.multiplier) return null;
-    const valueInMetres = value * from.multiplier;
-    return valueInMetres / to.multiplier;
+function convertUnit(value, fromMultiplier, toMultiplier) {
+    if (!fromMultiplier || !toMultiplier) return null;
+    const valueInBase = value * fromMultiplier;
+    return valueInBase / toMultiplier;
 }
+
 
 /**
  * Handles user input and updates the output field with the converted value.
  * Reads the value, from-unit, and to-unit from the form, performs conversion, and displays the result.
- * @param {number} value - The numeric value to convert.
- * @param {string} fromOptionValue - The value attribute of the from-unit <option>.
- * @param {string} toOptionValue - The value attribute of the to-unit <option>.
- * @returns {number|null} - The converted value, or null if units are invalid.
  */
 function doConversion() {
     const value = parseFloat(document.getElementById('input-value').value);
-    const fromOption = document.getElementById('input-unit').value;
-    const toOption = document.getElementById('output-unit').value;
+    const fromData = getUnitData(document.getElementById('input-unit'));
+    const toData = getUnitData(document.getElementById('output-unit'));
     if (!isNaN(value)) {
-        const result = convertUnit(value, fromOption, toOption);
-        document.getElementById('output').textContent = (result !== null) ? `${value} ${parseUnitOption(fromOption).name} = ${result} ${parseUnitOption(toOption).name}` : 'Invalid unit selection.';
-        document.getElementById('output').setAttribute('data-value', `${value} ${parseUnitOption(fromOption).name} = ${result} ${parseUnitOption(toOption).name}`);
+        const result = convertUnit(value, fromData.multiplier, toData.multiplier);
+        const fromLabel = fromData.name + (fromData.shorthand ? ` (${fromData.shorthand})` : '');
+        const toLabel = toData.name + (toData.shorthand ? ` (${toData.shorthand})` : '');
+        const outputText = (result !== null)
+            ? `${value} ${fromLabel} = ${result} ${toLabel}`
+            : 'Invalid unit selection.';
+        const outputShorthand = (result !== null)
+            ? `${value} ${fromData.shorthand} = ${result} ${toData.shorthand}`
+            : 'Invalid unit selection.';
+        document.getElementById('output').textContent = outputText;
+        document.getElementById('output').setAttribute('data-unit-value', outputText);
+        document.getElementById('output').setAttribute('data-unit-to-name', `${fromLabel} to ${toLabel}`);
+        document.getElementById('output').setAttribute('data-unit-to-shorthand', `${fromData.shorthand} to ${toData.shorthand}`);
+        document.getElementById('output-value').textContent = result;
+        document.getElementById('output-value').setAttribute('value', result);
     } else {
         document.getElementById('output').textContent = '';
-        document.getElementById('output').removeAttribute('data-value');
+        document.getElementById('output').removeAttribute('data-unit-value');
+        document.getElementById('output').removeAttribute('data-unit-to');
+        document.getElementById('output').removeAttribute('data-unit-shorthand');
+        document.getElementById('output-value').removeAttribute('value');
     }
 }
 
