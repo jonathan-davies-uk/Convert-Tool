@@ -9,7 +9,10 @@ body {
 .catergory {
     max-width: 800px;
     margin: 40px auto;
-    padding: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     background-color: #1a1c22;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
