@@ -48,6 +48,12 @@ li i {
   text-align: center;
 }
 
+ul li:nth-of-type(5n+1) i { color: #e74c3c; /* red */}
+ul li:nth-of-type(5n+2) i { color: #f1c40f; /* yellow */}
+ul li:nth-of-type(5n+3) i { color: #3498db; /* blue */}
+ul li:nth-of-type(5n+4) i { color: #2ecc71; /* green */}
+ul li:nth-of-type(5n+5) i { color: #9b59b6; /* purple */}
+
 a {
   text-decoration: none;
   color: #f0f0f0;
