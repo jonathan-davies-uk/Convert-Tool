@@ -14,12 +14,28 @@
  * @returns {{ name: string, shorthand: string|null, multiplier: number|null }}
  */
 function getUnitData(select) {
-    const opt = select.options[select.selectedIndex];
-    if (!opt) return { name: '', shorthand: '', multiplier: null };
-    const name = opt.getAttribute('data-unit-name') || '';
-    const shorthand = opt.getAttribute('data-unit-shorthand') || '';
-    const multiplier = opt.getAttribute('data-unit-multiplier');
-    return { name, shorthand, multiplier: isNaN(multiplier) ? null : multiplier };
+    // Accept different input types:
+    // - HTMLSelectElement: read selected option
+    // - HTMLOptionElement: read attributes directly
+    // - HTMLElement with data-unit-* attributes: read attributes directly
+    // - string id: resolve element by id and recurse
+    if (typeof select === 'string') {
+        const el = document.getElementById(select);
+        return el ? getUnitData(el) : { name: '', shorthand: '', multiplier: null };
+    }
+    if (select instanceof HTMLSelectElement) {
+        const opt = select.options[select.selectedIndex];
+        return opt ? getUnitData(opt) : { name: '', shorthand: '', multiplier: null };
+    }
+    if (select instanceof HTMLOptionElement || select instanceof HTMLElement) {
+        const el = select;
+        const name = el.getAttribute('data-unit-name') || '';
+        const shorthand = el.getAttribute('data-unit-shorthand') || '';
+        const multAttr = el.getAttribute('data-unit-multiplier');
+        const multiplier = multAttr === null ? null : parseFloat(multAttr);
+        return { name, shorthand, multiplier: isNaN(multiplier) ? null : multiplier };
+    }
+    return { name: '', shorthand: '', multiplier: null };
 }
 
 /**
