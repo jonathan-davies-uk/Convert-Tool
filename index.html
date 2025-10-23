@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="../../assets/javascripts/Convert-Operation.js" defer></script>
 </head>
-<body>
+<body class="min-h-screen flex flex-col">
   <header class="w-full bg-gray-700 text-white text-3xl p-4" role="banner">Unit Converter Tool
     <nav role="navigation" aria-label="Main"></nav>
   </header>
@@ -279,5 +279,63 @@
   </main>
   <footer class="relative p-4 bg-primary text-center" role="section" aria-label="Footer">
     &copy; 2025 Jonathan Davies. Licensed under Apache-2.0.</footer>
+
+     <!-- Header -->
+  <header class="w-full bg-gray-800 text-white">
+    <nav class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="text-xl font-semibold">Brand</div>
+      <ul class="flex space-x-6">
+        <li><a href="#" class="hover:text-gray-300">Home</a></li>
+        <li><a href="#" class="hover:text-gray-300">About</a></li>
+        <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex justify-center items-start py-8">
+    <div class="w-full sm:w-4/5 md:w-3/4 lg:w-1/2 px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Left Column (2/3 width on larger screens) -->
+      <div class="md:col-span-2 space-y-6">
+        <!-- Application Section -->
+        <section class="bg-white p-6 rounded-lg shadow">
+          <h2 class="text-lg font-semibold mb-2">Application</h2>
+          <p>Your main application content goes here.</p>
+        </section>
+
+        <!-- Lists Section -->
+        <section class="bg-white p-6 rounded-lg shadow">
+          <h2 class="text-lg font-semibold mb-2">Lists</h2>
+          <p>Your list content goes here.</p>
+        </section>
+      </div>
+
+      <!-- Right Column (1/3 width on larger screens) -->
+      <div class="md:col-span-1 space-y-6">
+        <!-- Advertisement Section -->
+        <section class="bg-white p-6 rounded-lg shadow">
+          <h2 class="text-lg font-semibold mb-2">Advertisement</h2>
+          <p>Ad content here.</p>
+        </section>
+
+        <!-- Right-hand Navigation Section -->
+        <section class="bg-white p-6 rounded-lg shadow">
+          <h2 class="text-lg font-semibold mb-2">Right-hand Navigation</h2>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-blue-600 hover:underline">Link 1</a></li>
+            <li><a href="#" class="text-blue-600 hover:underline">Link 2</a></li>
+            <li><a href="#" class="text-blue-600 hover:underline">Link 3</a></li>
+          </ul>
+        </section>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full bg-gray-800 text-white py-4 text-center">
+    <p>&copy; 2025 Your Company. All rights reserved.</p>
+  </footer>
 </body>
 </html>
