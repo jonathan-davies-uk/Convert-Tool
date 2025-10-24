@@ -1,5 +1,219 @@
 @import "tailwindcss";
 
+:root {
+  /* Colours */
+  --text-colour: #0b0c0c;
+  --secondary-text-colour: #6f777b;
+  --link-colour: #1d70b8;
+  --link-hover-colour: #003078;
+  --link-visited-colour: #4c2c92;
+  --link-active-colour: #0b0c0c;
+  --border-colour: #b1b4b6;
+  --input-border-colour: #0b0c0c;
+  --focus-colour: #ffbf47;
+  --focus-text-colour: #0b0c0c;
+  --error-colour: #d4351c;
+  --success-colour: #00703c;
+  --brand-colour: #1d70b8;
+}
+
+/* Font Faces */
+@font-face {
+  font-family: Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Arial"), local("Arial-Regular");
+  font-display: fallback;
+}
+@font-face {
+  font-family: Arial, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  src: local("Arial Bold"), local("Arial-Bold"), local("Arial-BoldMT");
+  font-display: fallback;
+}
+
+/* Layout Styles */
+.width-container {
+  max-width: 960px;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+@supports (margin: max(calc(0px))) {
+  .width-container {
+    margin-right: max(15px, calc(15px + env(safe-area-inset-right)));
+    margin-left: max(15px, calc(15px + env(safe-area-inset-left)));
+  }
+}
+@media (min-width: 40.0625em) {
+  .width-container {
+    margin-right: 30px;
+    margin-left: 30px;
+  }
+  @supports (margin: max(calc(0px))) {
+    .width-container {
+      margin-right: max(30px, calc(15px + env(safe-area-inset-right)));
+      margin-left: max(30px, calc(15px + env(safe-area-inset-left)));
+    }
+  }
+}
+@media (min-width: 1020px) {
+  .width-container {
+    margin-right: auto;
+    margin-left: auto;
+  }
+  @supports (margin: max(calc(0px))) {
+    .width-container {
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+}
+
+.main-wrapper {
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+@media (min-width: 40.0625em) {
+  .main-wrapper {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+.main-wrapper--auto-spacing:first-child,
+.main-wrapper--l {
+  padding-top: 30px;
+}
+@media (min-width: 40.0625em) {
+  .main-wrapper--auto-spacing:first-child,
+  .main-wrapper--l {
+    padding-top: 50px;
+  }
+}
+
+.grid-row {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.grid-row:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.grid-column-two-thirds {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 15px;
+}
+@media (min-width: 40.0625em) {
+  .grid-column-two-thirds {
+    width: 66.6666666667%;
+    float: left;
+  }
+}
+
+.grid-column-one-third {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 15px;
+}
+@media (min-width: 40.0625em) {
+  .grid-column-one-third {
+    width: 33.3333333333%;
+    float: left;
+  }
+}
+
+/* Header Styles */
+.header {
+  font-family: Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1;
+  border-bottom: 10px solid #fff;
+  background: #0b0c0c;
+  color: #fff;
+}
+
+@media print {
+  .header {
+    font-family: Arial, sans-serif;
+  }
+}
+@media (min-width: 40.0625em) {
+  .header {
+    font-size: 1rem;
+    line-height: 1;
+  }
+}
+@media print {
+  .header {
+    font-size: 14pt;
+    line-height: 1;
+  }
+}
+.template--rebranded .header {
+  border-bottom: 1px solid transparent;
+  background: #1d70b8;
+}
+
+@media print {
+  .header {
+    border-bottom-width: 0;
+    color: #0b0c0c;
+    background: transparent;
+  }
+  .header__link:link,
+  .header__link:visited {
+    color: #0b0c0c;
+  }
+  .header__link:after {
+    display: none;
+  }
+}
+
+.header-container--full-width {
+  padding: 0 15px;
+  border-color: #1d70b8;
+}
+.header-container--full-width .header__menu-button {
+  right: 15px;
+}
+.header-container {
+  position: relative;
+  margin-bottom: -10px;
+  padding-top: 10px;
+  border-bottom: 10px solid #1d70b8;
+}
+.header-container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.template--rebranded .header-container {
+  margin-bottom: 0;
+  padding-top: 0;
+  border-bottom: none;
+}
+.header--full-width-border {
+  border-bottom-color: #1d70b8;
+}
+.header--full-width-border .header-container {
+  border-bottom-color: transparent;
+}
+
+.-header--full-width-border {
+  border-bottom-color: #1d70b8;
+}
+.-header--full-width-border .-header__container {
+  border-bottom-color: transparent;
+}
+
 /* Custom Styles
 body {
   margin: 0;

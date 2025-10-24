@@ -37,49 +37,91 @@
     <!--
       TailwindCSS  
       npx @tailwindcss/cli -i ./assets/stylesheets/style.css -o ./assets/stylesheets/output.css --watch
-    -->
-    <link rel="stylesheet" type="text/css" href="../../assets/stylesheets/output.css">
+    
+    <link rel="stylesheet" type="text/css" href="../../assets/stylesheets/output.css">-->
     <!-- Font Awesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="../../assets/javascripts/Convert-Operation.js" defer></script>
 </head>
-<body class="min-h-screen flex flex-col">
-  <header class="w-full bg-gray-700 text-white text-3xl p-4" role="banner">Unit Converter Tool
-    <nav role="navigation" aria-label="Main"></nav>
+<body>
+  <header class="header header--full-width-border" role="banner">
+    <div class="header-container width-container">
+      <div class="header-logo"></div>
+      <nav role="navigation" aria-label="Main">Unit Converter Tool</nav>
+    </div>
   </header>
-  <main class="w-full bg-gray-900">
-    <div class="w-1/2 mx-auto" role="section">
-      <section class="w-2/3 bg-gray-200 flex" role="application" aria-label="Converter Operation">
-        <div class="">
-          <nav role="navigation" aria-label="Breadcrumb"></nav>
-          <h1>Unit Converter</h1>
-          <form id="converter-form" onsubmit="return false;">
-          <table>
-            <tr>
-              <td colspan="2">
-                <output form="converter-form" for="input-value" id="output" style="margin-top:1em;font-weight:bold;">
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="input-value">Value:</label>
-                <input type="number" id="input-value" required step="any" value="1">
-              </td>
-              <td>
-                <label for="output-value">Value:</label>
-                <output form="converter-form" type="number" id="output-value" step="any" style="border: 1px solid black; background-color: #f9f9f9;"  readonly>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                  <label for="input-unit">From:</label>
-                  <select id="input-unit" size="10">
+  <div class="width-container">
+    <main class="main-wrapper">
+      <div class="grid-row" role="section">
+        <section class="grid-column-two-thirds" role="application" aria-label="Converter Operation">
+          <div class="">
+            <nav role="navigation" aria-label="Breadcrumb"></nav>
+            <h1>Unit Converter</h1>
+            <form id="converter-form" onsubmit="return false;">
+            <table>
+              <tr>
+                <td colspan="2">
+                  <output form="converter-form" for="input-value" id="output" style="margin-top:1em;font-weight:bold;">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="input-value">Value:</label>
+                  <input type="number" id="input-value" required step="any" value="1">
+                </td>
+                <td>
+                  <label for="output-value">Value:</label>
+                  <output form="converter-form" type="number" id="output-value" step="any" style="border: 1px solid black; background-color: #f9f9f9;"  readonly>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <label for="input-unit">From:</label>
+                    <select id="input-unit" size="10">
+                      <optgroup label="Metric">
+                        <option data-unit-name="Nanometres" data-unit-shorthand="nm" data-unit-multiplier="1e-9">Nanometres (nm)</option>
+                        <option data-unit-name="Micrometres" data-unit-shorthand="μm" data-unit-multiplier="1e-6">Micrometres (μm)</option>
+                        <option data-unit-name="Millimetres" data-unit-shorthand="mm" data-unit-multiplier="1e-3">Millimetres (mm)</option>
+                        <option data-unit-name="Centimetres" data-unit-shorthand="cm" data-unit-multiplier="1e-2">Centimetres (cm)</option>
+                        <option data-unit-name="Metres" data-unit-shorthand="m" data-unit-multiplier="1" selected>Metres (m)</option>
+                        <option data-unit-name="Kilometres" data-unit-shorthand="km" data-unit-multiplier="1e3">Kilometres (km)</option>
+                      </optgroup>
+                      <optgroup label="Imperial"> 
+                        <option data-unit-name="Thou" data-unit-shorthand="th" data-unit-multiplier="0.0000254">Thou (th)</option>
+                        <option data-unit-name="Inches" data-unit-shorthand="in" data-unit-multiplier="0.0254">Inches (in)</option>
+                        <option data-unit-name="Feet" data-unit-shorthand="ft" data-unit-multiplier="0.3048">Feet (ft)</option>
+                        <option data-unit-name="Yards" data-unit-shorthand="yd" data-unit-multiplier="0.9144">Yards (yd)</option>
+                        <option data-unit-name="Chains" data-unit-shorthand="ch" data-unit-multiplier="20.1168">Chains (ch)</option>
+                        <option data-unit-name="Furlongs" data-unit-shorthand="fur" data-unit-multiplier="201.168">Furlongs (fur)</option>
+                        <option data-unit-name="Miles" data-unit-shorthand="mi" data-unit-multiplier="1609.344">Miles (mi)</option>
+                        <option data-unit-name="League" data-unit-shorthand="lea" data-unit-multiplier="4828.032">League (lea)</option>
+                      </optgroup>
+                      <optgroup label="Maritime">
+                        <option value="Fathoms (ftm) [1.853184]" data-unit-name="Fathoms" data-unit-shorthand="ftm" data-unit-multiplier="1.853184">Fathoms (ftm)</option>
+                        <option value="Cables [185.3184]" data-unit-name="Cables" data-unit-shorthand="" data-unit-multiplier="185.3184">Cables</option>
+                        <option value="Nautical miles [1853.184]" data-unit-name="Nautical miles" data-unit-shorthand="" data-unit-multiplier="1853.184">Nautical miles</option>
+                      </optgroup>
+                      <optgroup label="Astronomical">
+                        <option data-unit-name="Parsecs" data-unit-shorthand="pc" data-unit-multiplier="3.0856776e16">Parsecs (pc)</option>
+                        <option data-unit-name="Astronmical units" data-unit-shorthand="au" data-unit-multiplier="149597870700">Astronmical units (au)</option>
+                        <option data-unit-name="Light years" data-unit-shorthand="ly" data-unit-multiplier="9460730472580800">Light years (ly)</option>
+                      </optgroup>
+                      <optgroup label="Comparisons">
+                        <option data-unit-name="Bus" data-unit-shorthand="" data-unit-multiplier="4">Bus (8.4m)</option>
+                        <option data-unit-name="Football pitch" data-unit-shorthand="" data-unit-multiplier="100.6">Football pitch (100.6m)</option>
+                        <option data-unit-name="Earth to Moon" data-unit-shorthand="" data-unit-multiplier="380000000">Earth to Moon</option>
+                      </optgroup>
+                    </select>
+                </td>
+                <td>
+                  <label for="output-unit">To:</label>
+                  <select id="output-unit" size="10">
                     <optgroup label="Metric">
-                      <option data-unit-name="Nanometres" data-unit-shorthand="nm" data-unit-multiplier="1e-9">Nanometres (nm)</option>
+                      <option data-unit-name="Nanometres" data-unit-shorthand="(nm)" data-unit-multiplier="1e-9">Nanometres (nm)</option>
                       <option data-unit-name="Micrometres" data-unit-shorthand="μm" data-unit-multiplier="1e-6">Micrometres (μm)</option>
                       <option data-unit-name="Millimetres" data-unit-shorthand="mm" data-unit-multiplier="1e-3">Millimetres (mm)</option>
-                      <option data-unit-name="Centimetres" data-unit-shorthand="cm" data-unit-multiplier="1e-2">Centimetres (cm)</option>
-                      <option data-unit-name="Metres" data-unit-shorthand="m" data-unit-multiplier="1" selected>Metres (m)</option>
+                      <option data-unit-name="Centimetres" data-unit-shorthand="cm" data-unit-multiplier="1e-2" selected>Centimetres (cm)</option>
+                      <option data-unit-name="Metres" data-unit-shorthand="m" data-unit-multiplier="1">Metres (m)</option>
                       <option data-unit-name="Kilometres" data-unit-shorthand="km" data-unit-multiplier="1e3">Kilometres (km)</option>
                     </optgroup>
                     <optgroup label="Imperial"> 
@@ -87,8 +129,7 @@
                       <option data-unit-name="Inches" data-unit-shorthand="in" data-unit-multiplier="0.0254">Inches (in)</option>
                       <option data-unit-name="Feet" data-unit-shorthand="ft" data-unit-multiplier="0.3048">Feet (ft)</option>
                       <option data-unit-name="Yards" data-unit-shorthand="yd" data-unit-multiplier="0.9144">Yards (yd)</option>
-                      <option data-unit-name="Chains" data-unit-shorthand="ch" data-unit-multiplier="20.1168">Chains (ch)</option>
-                      <option data-unit-name="Furlongs" data-unit-shorthand="fur" data-unit-multiplier="201.168">Furlongs (fur)</option>
+                      <option data-unit-name="Chains" data-unit-shorthand="ch" data-unit-multiplier="20.1168">Chains (ch)</option>                <option data-unit-name="Furlongs" data-unit-shorthand="fur" data-unit-multiplier="201.168">Furlongs (fur)</option>
                       <option data-unit-name="Miles" data-unit-shorthand="mi" data-unit-multiplier="1609.344">Miles (mi)</option>
                       <option data-unit-name="League" data-unit-shorthand="lea" data-unit-multiplier="4828.032">League (lea)</option>
                     </optgroup>
@@ -108,176 +149,140 @@
                       <option data-unit-name="Earth to Moon" data-unit-shorthand="" data-unit-multiplier="380000000">Earth to Moon</option>
                     </optgroup>
                   </select>
-              </td>
-              <td>
-                <label for="output-unit">To:</label>
-                <select id="output-unit" size="10">
-                  <optgroup label="Metric">
-                    <option data-unit-name="Nanometres" data-unit-shorthand="(nm)" data-unit-multiplier="1e-9">Nanometres (nm)</option>
-                    <option data-unit-name="Micrometres" data-unit-shorthand="μm" data-unit-multiplier="1e-6">Micrometres (μm)</option>
-                    <option data-unit-name="Millimetres" data-unit-shorthand="mm" data-unit-multiplier="1e-3">Millimetres (mm)</option>
-                    <option data-unit-name="Centimetres" data-unit-shorthand="cm" data-unit-multiplier="1e-2" selected>Centimetres (cm)</option>
-                    <option data-unit-name="Metres" data-unit-shorthand="m" data-unit-multiplier="1">Metres (m)</option>
-                    <option data-unit-name="Kilometres" data-unit-shorthand="km" data-unit-multiplier="1e3">Kilometres (km)</option>
-                  </optgroup>
-                  <optgroup label="Imperial"> 
-                    <option data-unit-name="Thou" data-unit-shorthand="th" data-unit-multiplier="0.0000254">Thou (th)</option>
-                    <option data-unit-name="Inches" data-unit-shorthand="in" data-unit-multiplier="0.0254">Inches (in)</option>
-                    <option data-unit-name="Feet" data-unit-shorthand="ft" data-unit-multiplier="0.3048">Feet (ft)</option>
-                    <option data-unit-name="Yards" data-unit-shorthand="yd" data-unit-multiplier="0.9144">Yards (yd)</option>
-                    <option data-unit-name="Chains" data-unit-shorthand="ch" data-unit-multiplier="20.1168">Chains (ch)</option>                <option data-unit-name="Furlongs" data-unit-shorthand="fur" data-unit-multiplier="201.168">Furlongs (fur)</option>
-                    <option data-unit-name="Miles" data-unit-shorthand="mi" data-unit-multiplier="1609.344">Miles (mi)</option>
-                    <option data-unit-name="League" data-unit-shorthand="lea" data-unit-multiplier="4828.032">League (lea)</option>
-                  </optgroup>
-                  <optgroup label="Maritime">
-                    <option value="Fathoms (ftm) [1.853184]" data-unit-name="Fathoms" data-unit-shorthand="ftm" data-unit-multiplier="1.853184">Fathoms (ftm)</option>
-                    <option value="Cables [185.3184]" data-unit-name="Cables" data-unit-shorthand="" data-unit-multiplier="185.3184">Cables</option>
-                    <option value="Nautical miles [1853.184]" data-unit-name="Nautical miles" data-unit-shorthand="" data-unit-multiplier="1853.184">Nautical miles</option>
-                  </optgroup>
-                  <optgroup label="Astronomical">
-                    <option data-unit-name="Parsecs" data-unit-shorthand="pc" data-unit-multiplier="3.0856776e16">Parsecs (pc)</option>
-                    <option data-unit-name="Astronmical units" data-unit-shorthand="au" data-unit-multiplier="149597870700">Astronmical units (au)</option>
-                    <option data-unit-name="Light years" data-unit-shorthand="ly" data-unit-multiplier="9460730472580800">Light years (ly)</option>
-                  </optgroup>
-                  <optgroup label="Comparisons">
-                    <option data-unit-name="Bus" data-unit-shorthand="" data-unit-multiplier="4">Bus (8.4m)</option>
-                    <option data-unit-name="Football pitch" data-unit-shorthand="" data-unit-multiplier="100.6">Football pitch (100.6m)</option>
-                    <option data-unit-name="Earth to Moon" data-unit-shorthand="" data-unit-multiplier="380000000">Earth to Moon</option>
-                  </optgroup>
-                </select>
-              </td>
-            </tr>
-          </table>
-        </form>
-        </div>
-      </section>
-      <section class="w-2/3 bg-gray-200 flex" role="list" aria-label="Converter List" >
-        <div class="">
-          <h2>Popular Converters</h2>
-          <ul>
-            <li><i class="fas fa-ruler"></i><a href="popular-converters/length/length-converter.html">Length Converter</a></li>
-            <li><i class="fas fa-layer-group"></i><a href="popular-converters/area/area-converter.html">Area Converter</a></li>
-            <li><i class="fas fa-scale-unbalanced"></i><a href="popular-converters/weight/weight-converter.html">Weight Converter</a></li>
-            <li><i class="fas fa-gauge-high"></i><a href="popular-converters/speed/speed-converter.html">Speed Converter</a></li>
-            <li><i class="fas fa-temperature-high"></i><a href="popular-converters/temperature/temperature-converter.html">Temperature Converter</a></li>
-            <li><i class="fas fa-clock"></i><a href="popular-converters/time/time-converter.html">Time Converter</a></li>
-            <li><i class="fas fa-gauge-simple"></i><a href="#">Pressure Converter</a></li>
-            <li><i class="fas fa-angle-up"></i><a href="#">Angle Converter</a></li>
-            <li><i class="fas fa-gas-pump"></i><a href="#">Fuel Consumption Converter</a></li>
-            <li><i class="fas fa-infinity"></i><a href="#">Force Converter</a></li>
-            <li><i class="fas fa-1"></i><a href="#">Number Converter</a></li>
-            <li><i class="fas fa-v"></i><a href="#">Volume Converter</a></li>
-            <li><i class="fas fa-bolt"></i><a href="#">Energy Converter</a></li>
-            <li><i class="fas fa-coins"></i><a href="#">Currency Converter</a></li>
-            <li><i class="fas fa-plug"></i><a href="#">Power Converter</a></li>
-          </ul>
-          <h2>Electric Converters</h2>
-          <ul>
-            <li><i class="fas fa-bolt"></i><a href="#">Current Converter</a></li>
-            <li><i class="fas fa-bolt"></i><a href="#">Electric Resistance Converter</a></li>
-            <li><i class="fas fa-bolt"></i><a href="#">Electric Resistivity Converter</a></li>
-            <li><i class="fas fa-bolt"></i><a href="#">Electric Conductance Converter</a></li>
-            <li><i class="fas fa-bolt"></i><a href="#">Electric Conductivity Converter</a></li>
-            <li><i class="fas fa-bolt"></i><a href="#">Electric Potential Converter</a></li>
-            <li><i class="fas fa-bolt"></i><a href="#">Electric Field Strength Converter</a></li>
-            <li><i class="fas fa-bolt"></i><a href="#">Linear Charge Density Converter</a></li>
-            <li><i class="fas fa-bolt"></i><a href="#">Surface Charge Density Converter</a></li>
-            <li><i class="fas fa-bolt"></i><a href="#">Charge Converter</a></li>
-            <li><i class="fas fa-bolt"></i><a href="#">Linear Current Density Converter</a></li>
-            <li><i class="fas fa-bolt"></i><a href="#">Volume Charge Density Converter</a></li>
-            <li><i class="fas fa-bolt"></i><a href="#">Surface Current Density Converter</a></li>
-            <li><i class="fas fa-bolt"></i><a href="#">Electrostatic Capacitance</a></li>
-            <li><i class="fas fa-bolt"></i><a href="#">Inductance Converter</a></li>
-          </ul>
-          <h2>Light Converters</h2>
-          <ul>
-            <li><i class="fas fa-lightbulb"></i><a href="#">Luminance Converter</a></li>
-            <li><i class="fas fa-lightbulb"></i><a href="#">Illumination Converter</a></li>
-            <li><i class="fas fa-lightbulb"></i><a href="#">Luminous Intensity Converter</a></li>
-            <li><i class="fas fa-lightbulb"></i><a href="#">Frequency Wavelength Converter</a></li>
-            <li><i class="fas fa-lightbulb"></i><a href="#">Digital Image Resolution Converter</a></li>
-          </ul>
-          <h2>Heat Converters</h2>
-          <ul>
-            <li><i class="fas fa-fire"></i><a href="#">Fuel Efficiency - Volume Converter</a></li>
-            <li><i class="fas fa-fire"></i><a href="#">Fuel Efficiency - Mass Converter</a></li>
-            <li><i class="fas fa-fire"></i><a href="#">Thermal Resistance Converter</a></li>
-            <li><i class="fas fa-fire"></i><a href="#">Thermal Conductivity Converter</a></li>
-            <li><i class="fas fa-fire"></i><a href="#">Thermal Expansion Converter</a></li>
-            <li><i class="fas fa-fire"></i><a href="#">Heat Density Converter</a></li>
-            <li><i class="fas fa-fire"></i><a href="#">Heat Flux Density Converter</a></li>
-            <li><i class="fas fa-fire"></i><a href="#">Heat Transfer Coefficient Converter</a></li>
-            <li><i class="fas fa-fire"></i><a href="#">Specific Heat Capacity Converter</a></li>
-          </ul>
-          <h2>Engineering Converters</h2>
-          <ul>
-            <li><i class="fas fa-gauge"></i><a href="#">Acceleration Converter</a></li>
-            <li><i class="fas fa-gauge"></i><a href="#">Acceleration - Angular Converter</a></li>
-            <li><i class="fas fa-gauge"></i><a href="#">Velocity - Angular Converter</a></li>
-            <li><i class="fas fa-gauge"></i><a href="#">Density Converter</a></li>
-            <li><i class="fas fa-gauge"></i><a href="#">Moment of Force Converter</a></li>
-            <li><i class="fas fa-gauge"></i><a href="#">Torque Converter</a></li>
-            <li><i class="fas fa-gauge"></i><a href="#">Moment of Inertia Converter</a></li>
-            <li><i class="fas fa-gauge"></i><a href="#">Specific Volume Converter</a></li>
-          </ul>
-          <h2>Fluid Converters</h2>
-          <ul>
-            <li><i class="fas fa-water"></i><a href="#">Flow Converter</a></li>
-            <li><i class="fas fa-water"></i><a href="#">Flow - Mass Converter</a></li>
-            <li><i class="fas fa-water"></i><a href="#">Flow - Molar Converter</a></li>
-            <li><i class="fas fa-water"></i><a href="#">Surface Tension Converter</a></li>
-            <li><i class="fas fa-water"></i><a href="#">Permeability Converter</a></li>
-            <li><i class="fas fa-water"></i><a href="#">Mass Flux Density Converter</a></li>
-            <li><i class="fas fa-water"></i><a href="#">Concentration - Molar Converter</a></li>
-            <li><i class="fas fa-water"></i><a href="#">Concentration - Solution Converter</a></li>
-            <li><i class="fas fa-water"></i><a href="#">Viscosity - Dynamic Converter</a></li>
-            <li><i class="fas fa-water"></i><a href="#">Viscosity - Kinematic Converter</a></li>
-          </ul>
-          <h2>Magnetism Converters</h2>
-          <ul>
-            <li><i class="fas fa-magnet"></i><a href="#">Magnetic Flux Converter</a></li>
-            <li><i class="fas fa-magnet"></i><a href="#">Magnetic Flux Density Converter</a></li>
-            <li><i class="fas fa-magnet"></i><a href="#">Magnetic Field Strength Converter</a></li>
-            <li><i class="fas fa-magnet"></i><a href="#">Magnetomotive Force Converter</a></li>
-          </ul>
-          <h2>Radiology Converters</h2>
-          <ul>
-            <li><i class="fas fa-x-ray"></i><a href="#">Radiation Converter</a></li>
-            <li><i class="fas fa-x-ray"></i><a href="#">Radiation-Exposure Converter</a></li>
-            <li><i class="fas fa-x-ray"></i><a href="#">Radiation-Activity Converter</a></li>
-            <li><i class="fas fa-x-ray"></i><a href="#">Radiation-Absorbed Dose Converter</a></li>
-          </ul>
-          <h2>Network Converters</h2>
-          <ul>
-            <li><i class="fas fa-network-wired"></i><a href="#">Data Storage Converter</a></li>
-            <li><i class="fas fa-network-wired"></i><a href="#">Data Transfer Converter</a></li>
-            <li><i class="fas fa-network-wired"></i><a href="#">Change IP Converter</a></li>
-            <li><i class="fas fa-network-wired"></i><a href="#">Prefix Converter</a></li>
-          </ul>
-          <h2>Other Converters</h2>
-          <ul>
-            <li><i class="fas fa-lightbulb"></i><a href="#">Sound Converter</a></li>
-            <li><i class="fas fa-lightbulb"></i><a href="#">Case Converter</a></li>
-            <li><i class="fas fa-lightbulb"></i><a href="#">Typography Converter</a></li>
-            <li><i class="fas fa-lightbulb"></i><a href="#">Volume - Lumber Converter</a></li>
-          </ul>
-        </div>
-      </section>
-      <section class="w-1/3 bg-gray-200 flex" role="advertisement" aria-label="Advertisement Space">
-        <div class="">
-          <p>Advertisement Space</p>
-          <!-- Advertisement Space -->
-        </div>
-      </section>
-      <section class="w-1/3 bg-gray-200 flex" role="navigation" aria-label="Right column navigation">
-        <div class="">
-          <p>Right Column Navigation</p>
-          <!-- Right Column Navigation -->
-        </div>
-      </section>
-    </div>
-  </main>
-  <footer class="relative p-4 bg-primary text-center" role="section" aria-label="Footer">
+                </td>
+              </tr>
+            </table>
+          </form>
+          </div>
+        </section>
+        <section class="grid-column-two-thirds" role="list" aria-label="Converter List" >
+          <div class="">
+            <h2>Popular Converters</h2>
+            <ul>
+              <li><i class="fas fa-ruler"></i><a href="popular-converters/length/length-converter.html">Length Converter</a></li>
+              <li><i class="fas fa-layer-group"></i><a href="popular-converters/area/area-converter.html">Area Converter</a></li>
+              <li><i class="fas fa-scale-unbalanced"></i><a href="popular-converters/weight/weight-converter.html">Weight Converter</a></li>
+              <li><i class="fas fa-gauge-high"></i><a href="popular-converters/speed/speed-converter.html">Speed Converter</a></li>
+              <li><i class="fas fa-temperature-high"></i><a href="popular-converters/temperature/temperature-converter.html">Temperature Converter</a></li>
+              <li><i class="fas fa-clock"></i><a href="popular-converters/time/time-converter.html">Time Converter</a></li>
+              <li><i class="fas fa-gauge-simple"></i><a href="#">Pressure Converter</a></li>
+              <li><i class="fas fa-angle-up"></i><a href="#">Angle Converter</a></li>
+              <li><i class="fas fa-gas-pump"></i><a href="#">Fuel Consumption Converter</a></li>
+              <li><i class="fas fa-infinity"></i><a href="#">Force Converter</a></li>
+              <li><i class="fas fa-1"></i><a href="#">Number Converter</a></li>
+              <li><i class="fas fa-v"></i><a href="#">Volume Converter</a></li>
+              <li><i class="fas fa-bolt"></i><a href="#">Energy Converter</a></li>
+              <li><i class="fas fa-coins"></i><a href="#">Currency Converter</a></li>
+              <li><i class="fas fa-plug"></i><a href="#">Power Converter</a></li>
+            </ul>
+            <h2>Electric Converters</h2>
+            <ul>
+              <li><i class="fas fa-bolt"></i><a href="#">Current Converter</a></li>
+              <li><i class="fas fa-bolt"></i><a href="#">Electric Resistance Converter</a></li>
+              <li><i class="fas fa-bolt"></i><a href="#">Electric Resistivity Converter</a></li>
+              <li><i class="fas fa-bolt"></i><a href="#">Electric Conductance Converter</a></li>
+              <li><i class="fas fa-bolt"></i><a href="#">Electric Conductivity Converter</a></li>
+              <li><i class="fas fa-bolt"></i><a href="#">Electric Potential Converter</a></li>
+              <li><i class="fas fa-bolt"></i><a href="#">Electric Field Strength Converter</a></li>
+              <li><i class="fas fa-bolt"></i><a href="#">Linear Charge Density Converter</a></li>
+              <li><i class="fas fa-bolt"></i><a href="#">Surface Charge Density Converter</a></li>
+              <li><i class="fas fa-bolt"></i><a href="#">Charge Converter</a></li>
+              <li><i class="fas fa-bolt"></i><a href="#">Linear Current Density Converter</a></li>
+              <li><i class="fas fa-bolt"></i><a href="#">Volume Charge Density Converter</a></li>
+              <li><i class="fas fa-bolt"></i><a href="#">Surface Current Density Converter</a></li>
+              <li><i class="fas fa-bolt"></i><a href="#">Electrostatic Capacitance</a></li>
+              <li><i class="fas fa-bolt"></i><a href="#">Inductance Converter</a></li>
+            </ul>
+            <h2>Light Converters</h2>
+            <ul>
+              <li><i class="fas fa-lightbulb"></i><a href="#">Luminance Converter</a></li>
+              <li><i class="fas fa-lightbulb"></i><a href="#">Illumination Converter</a></li>
+              <li><i class="fas fa-lightbulb"></i><a href="#">Luminous Intensity Converter</a></li>
+              <li><i class="fas fa-lightbulb"></i><a href="#">Frequency Wavelength Converter</a></li>
+              <li><i class="fas fa-lightbulb"></i><a href="#">Digital Image Resolution Converter</a></li>
+            </ul>
+            <h2>Heat Converters</h2>
+            <ul>
+              <li><i class="fas fa-fire"></i><a href="#">Fuel Efficiency - Volume Converter</a></li>
+              <li><i class="fas fa-fire"></i><a href="#">Fuel Efficiency - Mass Converter</a></li>
+              <li><i class="fas fa-fire"></i><a href="#">Thermal Resistance Converter</a></li>
+              <li><i class="fas fa-fire"></i><a href="#">Thermal Conductivity Converter</a></li>
+              <li><i class="fas fa-fire"></i><a href="#">Thermal Expansion Converter</a></li>
+              <li><i class="fas fa-fire"></i><a href="#">Heat Density Converter</a></li>
+              <li><i class="fas fa-fire"></i><a href="#">Heat Flux Density Converter</a></li>
+              <li><i class="fas fa-fire"></i><a href="#">Heat Transfer Coefficient Converter</a></li>
+              <li><i class="fas fa-fire"></i><a href="#">Specific Heat Capacity Converter</a></li>
+            </ul>
+            <h2>Engineering Converters</h2>
+            <ul>
+              <li><i class="fas fa-gauge"></i><a href="#">Acceleration Converter</a></li>
+              <li><i class="fas fa-gauge"></i><a href="#">Acceleration - Angular Converter</a></li>
+              <li><i class="fas fa-gauge"></i><a href="#">Velocity - Angular Converter</a></li>
+              <li><i class="fas fa-gauge"></i><a href="#">Density Converter</a></li>
+              <li><i class="fas fa-gauge"></i><a href="#">Moment of Force Converter</a></li>
+              <li><i class="fas fa-gauge"></i><a href="#">Torque Converter</a></li>
+              <li><i class="fas fa-gauge"></i><a href="#">Moment of Inertia Converter</a></li>
+              <li><i class="fas fa-gauge"></i><a href="#">Specific Volume Converter</a></li>
+            </ul>
+            <h2>Fluid Converters</h2>
+            <ul>
+              <li><i class="fas fa-water"></i><a href="#">Flow Converter</a></li>
+              <li><i class="fas fa-water"></i><a href="#">Flow - Mass Converter</a></li>
+              <li><i class="fas fa-water"></i><a href="#">Flow - Molar Converter</a></li>
+              <li><i class="fas fa-water"></i><a href="#">Surface Tension Converter</a></li>
+              <li><i class="fas fa-water"></i><a href="#">Permeability Converter</a></li>
+              <li><i class="fas fa-water"></i><a href="#">Mass Flux Density Converter</a></li>
+              <li><i class="fas fa-water"></i><a href="#">Concentration - Molar Converter</a></li>
+              <li><i class="fas fa-water"></i><a href="#">Concentration - Solution Converter</a></li>
+              <li><i class="fas fa-water"></i><a href="#">Viscosity - Dynamic Converter</a></li>
+              <li><i class="fas fa-water"></i><a href="#">Viscosity - Kinematic Converter</a></li>
+            </ul>
+            <h2>Magnetism Converters</h2>
+            <ul>
+              <li><i class="fas fa-magnet"></i><a href="#">Magnetic Flux Converter</a></li>
+              <li><i class="fas fa-magnet"></i><a href="#">Magnetic Flux Density Converter</a></li>
+              <li><i class="fas fa-magnet"></i><a href="#">Magnetic Field Strength Converter</a></li>
+              <li><i class="fas fa-magnet"></i><a href="#">Magnetomotive Force Converter</a></li>
+            </ul>
+            <h2>Radiology Converters</h2>
+            <ul>
+              <li><i class="fas fa-x-ray"></i><a href="#">Radiation Converter</a></li>
+              <li><i class="fas fa-x-ray"></i><a href="#">Radiation-Exposure Converter</a></li>
+              <li><i class="fas fa-x-ray"></i><a href="#">Radiation-Activity Converter</a></li>
+              <li><i class="fas fa-x-ray"></i><a href="#">Radiation-Absorbed Dose Converter</a></li>
+            </ul>
+            <h2>Network Converters</h2>
+            <ul>
+              <li><i class="fas fa-network-wired"></i><a href="#">Data Storage Converter</a></li>
+              <li><i class="fas fa-network-wired"></i><a href="#">Data Transfer Converter</a></li>
+              <li><i class="fas fa-network-wired"></i><a href="#">Change IP Converter</a></li>
+              <li><i class="fas fa-network-wired"></i><a href="#">Prefix Converter</a></li>
+            </ul>
+            <h2>Other Converters</h2>
+            <ul>
+              <li><i class="fas fa-lightbulb"></i><a href="#">Sound Converter</a></li>
+              <li><i class="fas fa-lightbulb"></i><a href="#">Case Converter</a></li>
+              <li><i class="fas fa-lightbulb"></i><a href="#">Typography Converter</a></li>
+              <li><i class="fas fa-lightbulb"></i><a href="#">Volume - Lumber Converter</a></li>
+            </ul>
+          </div>
+        </section>
+        <section class="grid-column-one-third" role="advertisement" aria-label="Advertisement Space">
+          <div class="">
+            <p>Advertisement Space</p>
+            <!-- Advertisement Space -->
+          </div>
+        </section>
+        <section class="grid-column-one-third" role="navigation" aria-label="Right column navigation">
+          <div class="">
+            <p>Right Column Navigation</p>
+            <!-- Right Column Navigation -->
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <footer class="p-4 bg-primary text-center" role="section" aria-label="Footer">
     &copy; 2025 Jonathan Davies. Licensed under Apache-2.0.</footer>
 
      <!-- Header -->
