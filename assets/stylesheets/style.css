@@ -201,14 +201,14 @@
   border-bottom: none;
 }
 .header--full-width-border {
-  border-bottom-color: #1d70b8;
+  border-bottom-color: var(--border-colour);
 }
 .header--full-width-border .header-container {
   border-bottom-color: transparent;
 }
 
 .-header--full-width-border {
-  border-bottom-color: #1d70b8;
+  border-bottom-color: var(--border-colour);
 }
 .-header--full-width-border .-header__container {
   border-bottom-color: transparent;
