@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  /* Colours */
+  /* Colours 
   --text-colour: #0b0c0c;
   --secondary-text-colour: #6f777b;
   --link-colour: #1d70b8;
@@ -15,8 +15,31 @@
   --error-colour: #d4351c;
   --success-colour: #00703c;
   --brand-colour: #1d70b8;
+  */
 
-  
+  /* Background Colours */
+  --background-dark-colour: #f3f2f1;
+  --background-colour: #ffffff;
+  --background-light-colour: #f9f9f9;
+
+  /* Text Colours */
+  --text-colour: #0b0c0c;
+  --text-muted-colour: #6f777b;
+
+  /* Border Colours */
+  --border-colour: #b1b4b6;
+  --border-muted-colour: #dfe1e2;
+  --border-highlight-colour: #1d70b8;
+
+  /* Action Colours */
+  --action-primary-colour: #1d70b8;
+  --action-secondary-colour: #6f777b;
+
+  /* Alert Colours */
+  --error-colour: #d4351c;
+  --warning-colour: #ffbf47;
+  --success-colour: #00703c;
+  --info-colour: #1d70b8;
 }
 
 /* Font Faces */
@@ -45,6 +68,7 @@
   max-width: 960px;
   margin-right: 15px;
   margin-left: 15px;
+  background-color: aqua;
 }
 
 @supports (margin: max(calc(0px))) {
